@@ -6,26 +6,30 @@ class Travel {
     this.travelers = travelers;
     this.destinations = destinations;
     this.trips = trips;
-    this.date = date;
+    this.date = date; // I think this will achually be a dayjs function to show today's date.
     this.userTrips = []
+    this.currentTrip;
   }
 findTrips(id) {
   this.userTrips = this.trips.filter((trip) => trip.userID === id)
   return this.userTrips;
 }
 
-findPastTrips(){
-  const pastTrips = this.userTrips.forEach(trip => {
-    console.log('!', trip.date)
-    console.log('?', this.date)
-    dayjs(this.date).isBefore(dayjs(trip.date))
-    // console.log('?!')
-    return trip.date;
+findCurrentTrip(){
+
+  const currentTrip = this.userTrips.filter(trip => {
+    let start = trip["date"];
+    let end = dayjs(trip["date"]).add(trip["duration"], 'day').format('YYYY/MM/DD');
+    if (dayjs(this.date).isBefore(end) && dayjs(this.date).isAfter(start)) {
+      return trip;
+    }
   })
 
-  // console.log(dayjs('20 1/03/03').isBefore('2020/09/09'))
-  // console.log(pastTrips)
+  return this.currentTrip = currentTrip;
+}
 
+findPastTrips(){
+  const pastTrips = this.userTrips.filter(trip => dayjs(this.date).isAfter(trip["date"])).filter(trip => !this.currentTrip.includes(trip))
   return pastTrips;
 }
 

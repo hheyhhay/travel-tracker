@@ -43,7 +43,7 @@ describe.only('Traveler', function() {
       "userID": 19,
       "destinationID": 27,
       "travelers": 1,
-      "date": "2021/08/06",
+      "date": "2021/08/02",
       "duration": 9,
       "status": "approved",
       "suggestedActivities": []
@@ -122,7 +122,7 @@ describe.only('Traveler', function() {
       "userID": 19,
       "destinationID": 27,
       "travelers": 1,
-      "date": "2021/08/06",
+      "date": "2021/08/02",
       "duration": 9,
       "status": "approved",
       "suggestedActivities": []
@@ -130,6 +130,8 @@ describe.only('Traveler', function() {
   })
 
   it('should be able to find past trips', () => {
+    travel.findTrips(19)
+    travel.findCurrentTrip();
     travel.findPastTrips()
     expect(travel.findPastTrips()).to.deep.equal([{
       "id": 125,
@@ -138,6 +140,21 @@ describe.only('Traveler', function() {
       "travelers": 4,
       "date": "2019/12/22",
       "duration": 15,
+      "status": "approved",
+      "suggestedActivities": []
+    }])
+  })
+
+  it('should be able to find current trips', () => {
+    travel.findTrips(19);
+    travel.findCurrentTrip()
+    expect(travel.currentTrip).to.deep.equal([{
+      "id": 16,
+      "userID": 19,
+      "destinationID": 27,
+      "travelers": 1,
+      "date": "2021/08/02",
+      "duration": 9,
       "status": "approved",
       "suggestedActivities": []
     }])
