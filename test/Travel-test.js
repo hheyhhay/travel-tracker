@@ -128,4 +128,18 @@ describe.only('Traveler', function() {
       "suggestedActivities": []
     }])
   })
+
+  it('should be able to find past trips', () => {
+    travel.findPastTrips()
+    expect(travel.findPastTrips()).to.deep.equal([{
+      "id": 125,
+      "userID": 19,
+      "destinationID": 2,
+      "travelers": 4,
+      "date": "2019/12/22",
+      "duration": 15,
+      "status": "approved",
+      "suggestedActivities": []
+    }])
+  })
 });

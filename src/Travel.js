@@ -16,6 +16,7 @@ findTrips(id) {
 
 findPastTrips(){
   const pastTrips = this.usersTrip.filter(trip => trip.date )
+  return pastTrips;
 }
 
 }
