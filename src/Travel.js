@@ -7,15 +7,25 @@ class Travel {
     this.destinations = destinations;
     this.trips = trips;
     this.date = date;
-    this.usersTrip = []
+    this.userTrips = []
   }
 findTrips(id) {
-  this.usersTrip = this.trips.filter((trip) => trip.userID === id)
-  return this.usersTrip;
+  this.userTrips = this.trips.filter((trip) => trip.userID === id)
+  return this.userTrips;
 }
 
 findPastTrips(){
-  const pastTrips = this.usersTrip.filter(trip => trip.date )
+  const pastTrips = this.userTrips.forEach(trip => {
+    console.log('!', trip.date)
+    console.log('?', this.date)
+    dayjs(this.date).isBefore(dayjs(trip.date))
+    // console.log('?!')
+    return trip.date;
+  })
+
+  // console.log(dayjs('20 1/03/03').isBefore('2020/09/09'))
+  // console.log(pastTrips)
+
   return pastTrips;
 }
 

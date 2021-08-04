@@ -99,7 +99,7 @@ describe.only('Traveler', function() {
 
   it('should be able to find trip by userID', () => {
     travel.findTrips(19);
-    expect(travel.usersTrip).to.deep.equal([{
+    expect(travel.userTrips).to.deep.equal([{
       "id": 125,
       "userID": 19,
       "destinationID": 2,
@@ -122,7 +122,7 @@ describe.only('Traveler', function() {
       "userID": 19,
       "destinationID": 27,
       "travelers": 1,
-      "date": "2022/11/20",
+      "date": "2021/08/06",
       "duration": 9,
       "status": "approved",
       "suggestedActivities": []
