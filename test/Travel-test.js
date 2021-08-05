@@ -159,4 +159,60 @@ describe.only('Traveler', function() {
       "suggestedActivities": []
     }])
   })
+
+  it('should be able to find future trips', () => {
+    travel.findTrips(19);
+    travel.findCurrentTrip();
+    expect(travel.findFutureTrips()).to.deep.equal([ {
+      "id": 14,
+      "userID": 19,
+      "destinationID": 35,
+      "travelers": 1,
+      "date": "2022/09/24",
+      "duration": 10,
+      "status": "approved",
+      "suggestedActivities": []
+    }])
+  })
+
+  it('should be able to find desination by id', () => {
+    travel.findTrips(19)
+    travel.findDestinations()
+    expect(travel.userDestinations).to.deep.equal([{
+      "id": 2,
+      "destination": "Stockholm, Sweden",
+      "estimatedLodgingCostPerDay": 100,
+      "estimatedFlightCostPerPerson": 780,
+      "image": "https://images.unsplash.com/photo-1560089168-6516081f5bf1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+      "alt": "city with boats on the water during the day time"
+    }, {
+      "id": 35,
+      "destination": "Anchorage, Alaska",
+      "estimatedLodgingCostPerDay": 200,
+      "estimatedFlightCostPerPerson": 100,
+      "image": "https://images.unsplash.com/photo-1539545547102-90ae2c140089?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+      "alt": "man riding on kayak surrounded by mountains"
+    }, {
+      "id": 27,
+      "destination": "San Francisco, California",
+      "estimatedLodgingCostPerDay": 175,
+      "estimatedFlightCostPerPerson": 200,
+      "image": "https://images.unsplash.com/photo-1501594907352-04cda38ebc29?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80",
+      "alt": "golden gate bridge during the day time"
+    }])
+  })
+  it('should only calculate prices for the current year', () => {
+    travel.findTrips(19);
+    travel.findDestinations();
+    travel.findYearTravel();
+    expect(travel.calculateAnnualCosts()).to.equal()
+  })
+
+  it('should be able to calculate the total amount for the year', () => {
+    travel.findTrips(19);
+    travel.findDestinations();
+    expect(travel.calculateAnnualCosts()).to.equal(5)
+  })
+
+
 });
