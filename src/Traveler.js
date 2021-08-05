@@ -1,12 +1,14 @@
 class Traveler {
-  constructor(travelerID) { // this comes from page log-in.
-    this.id = travelerID;
-  }
-  findTrips(){
+  constructor(travelerData) { // this comes from page log-in.
+    this.users = travelerData;
 
   }
+  findUser(id){
+    const user = this.users.find(user => user.id === id)
+    return user;
+  }
 }
-module.export = Traveler;
+
 
 
 // to get the information we need:
@@ -18,3 +20,4 @@ Need to return the date, duration, and status
 Then it will need to parse throught the desitinationID
 
 */
+module.exports = Traveler;
