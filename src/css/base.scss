@@ -1,7 +1,82 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
-
+@import 'variables'; // @use is maybe a better thing to use, but this is currently working
+* {
+  margin: 0;
+  height: 100%;
+}
 body {
   background: $primary-background;
+  border: 2px solid green;
+  display: flex;
+  flex-direction: column;
+
+}
+
+h1 {
+  font-size: 30px;
+  // padding: 10%;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* Nav-bar */
+.nav-bar {
+  background-color: pink;
+  display: flex;
+  height: 20%;
+  width: 100%;
+}
+/*Trips text */
+.trip {
+  display: flex;
+  height: 10%;
+  border: 10px solid blue;
+}
+
+/* trip cards */
+.parent {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+
+  grid-template-columns: 45% 45%;
+  grid-template-rows: repeat(2, 45%);
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+  padding: 0;
+  border: 1px solid black;
+
+}
+
+.trip-info {
+  display: flex;
+  flex-direction: column;
+  border-radius: border-radius;
+  background-color: white;
+  box-shadow: 1px 1px 1px grey;
+  height: 100%;
+  width: 100%;
+}
+
+/* button */
+.button-div {
+  height: 10%;
+}
+.button {
+  border-radius: border-radius;
+  // height: 10%;
+  margin: 5%;
+}
+
+/* Amount Spent */
+.total-spent {
+  border: 2px solid pink;
+  height: 10%;
+}
+.amount-spent {
+  .border: 2px solid red;
+
 }
