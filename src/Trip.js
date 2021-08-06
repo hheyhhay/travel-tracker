@@ -9,6 +9,7 @@ class Trip {
     this.pastTrips;
     this.futureTrips;
     this.pendingTrips;
+    this.tripsThisYear;
   }
   findTrips(id) {
     this.userTrips = this.tripData.filter((trip) => trip.userID === id)
@@ -42,6 +43,14 @@ class Trip {
   findPendingTrips(){
     this.pendingTrips =this.userTrips.filter(trip => trip["status"] === "pending");
     return this.pendingTrips;
+  }
+
+  findTripsInYear() {
+    let startOfYear = dayjs(this.date).startOf('year').format('YYYY/MM/DD')
+    let endOfYear = dayjs(this.date).endOf('year').format('YYYY/MM/DD')
+
+    this.tripsThisYear = this.userTrips.filter(trip => dayjs(trip["date"]).isAfter(startOfYear, 'day') && dayjs(trip["date"]).isBefore(endOfYear, 'day') )
+    return this.tripsThisYear;
   }
 }
 

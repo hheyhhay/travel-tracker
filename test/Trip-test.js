@@ -5,7 +5,7 @@ var dayjs = require('dayjs');
 
 
 
-describe.only('Trip', () => {
+describe('Trip', () => {
   let trips;
   let trip;
 
@@ -171,6 +171,25 @@ describe.only('Trip', () => {
       "date": "2022/09/24",
       "duration": 10,
       "status": "pending",
+      "suggestedActivities": []
+    }])
+  })
+
+  it('should be able to find cost per trip', () => {
+
+  })
+
+  it('should be able to find trips for the current year', () => {
+    trip.findTrips(19)
+    trip.findTripsInYear()
+    expect(trip.tripsThisYear).to.deep.equal([{
+      "id": 16,
+      "userID": 19,
+      "destinationID": 27,
+      "travelers": 1,
+      "date": "2021/08/02",
+      "duration": 9,
+      "status": "approved",
       "suggestedActivities": []
     }])
   })
