@@ -2,7 +2,7 @@ import chai from 'chai';
 const expect = chai.expect;
 const Traveler = require('../src/Traveler')
 
-describe.only('Traveler', function() {
+describe('Traveler', function() {
   let travelers;
   let traveler;
   beforeEach(() => {

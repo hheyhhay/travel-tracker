@@ -2,7 +2,7 @@ import chai from 'chai';
 const Travel = require('../src/Travel')
 const expect = chai.expect;
 
-describe.only('Traveler', function() {
+describe('Traveler', function() {
   let travel;
   let travelers;
   let trips;
