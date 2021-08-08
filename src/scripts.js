@@ -46,9 +46,9 @@ const parseValues = (data) => {
   destinationData = data[0].destinations;
   tripData = data[1].trips;
   travelerData = data[2].travelers;
-  console.log('destinationData', destinationData)
-  console.log('tripData', tripData)
-  console.log('travelerData', travelerData)
+  // console.log('destinationData', destinationData)
+  // console.log('tripData', tripData)
+  // console.log('travelerData', travelerData)
 
   instantiation()
   renderPage()
@@ -60,12 +60,12 @@ const instantiation = () => {
   currentTraveler = traveler.findUser(i);
   trips = new Trip(tripData);
   destinations = new Destination(destinationData)
-  console.log(i)
-  console.log(currentTraveler)
-  console.log(trips.findTrips(i))
-  console.log(trips.userTrips)
-  console.log(trips.currentTrip)
-  console.log(destinationData)
+  // console.log(i)
+  // console.log(currentTraveler)
+  // console.log(trips.findTrips(i))
+  // console.log(trips.userTrips)
+  // console.log(trips.currentTrip)
+  // console.log(destinationData)
   userTrips = trips.findTrips(i)
   userDestinations = destinations.findByTrips(userTrips)
 }
@@ -77,15 +77,18 @@ invokeFetch()
 //ALL DOM MANIPULATION DOWN HERE FOR CHANGING
 //Query Selectoctor
 
-const greeting = document.getElementById("greeting");
-const cardContainer = document.getElementById("card-container")
-const totalCost = document.getElementById("total-amount")
+
 
 const renderPage = () => {
   renderUser()
   renderCards()
   renderTotalSpent()
+  renderDropdown()
 }
+const greeting = document.getElementById("greeting");
+const cardContainer = document.getElementById("card-container")
+const totalCost = document.getElementById("total-amount")
+const dropdown = document.getElementById("dropdown")
 
 const renderUser = () => {
   let greetingHTML = `Hello, ${currentTraveler.name}`
@@ -108,23 +111,49 @@ const renderCards = () => {
 
 
   })
-  console.log(cardContainerHTML)
+  // console.log(cardContainerHTML)
   cardContainer.innerHTML = cardContainerHTML;
 }
 
 const renderTotalSpent = () => {
   trips.findTrips(19)
   trips.findTripsInYear()
-  console.log(trips.tripsThisYear)
+  // console.log(trips.tripsThisYear)
   trips.findTrips(currentTraveler.id)
-  console.log(trips.findTripsInYear())
+  // console.log(trips.findTripsInYear())
   let yearTrips = trips.findTripsInYear()
-  console.log(yearTrips)
+  // console.log(yearTrips)
   // let costHTML = `Total Amount Spent: $${destinations.findTotalSpent()}`
 }
 
 
+const renderDropdown = () => {
+  // dropdown.empty();
 
+// console.log(destinationData)
+  let dropdownHTML = "";
+//   `<select class="destination" name="destination" >`
+//
+console.log(destinationData)
+  destinationData.forEach(destination => {
+    // console.log(destination.destination)
+    // console.log('here')
+    dropdownHTML += `
+    <label for = "destinations" >Choose a destination:</label>
+<select class="destination" id = "drop-down" name="destination" >
+<option value = "${destination.destination}" > ${destination.destination}</option> </select>`
+    console.log(dropdownHTML)
+  })
+  console.log(greeting)
+  // console.log(dropdownHTML)
+  console.log(dropdown)
+  dropdown.innerHTML = dropdownHTML;
+
+  // let stringDropdown = dropdownHTML.join()
+  // let dropdownHTML = `<p>HI</p>`
+
+
+}
 
 
 

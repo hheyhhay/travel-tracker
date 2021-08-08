@@ -35,14 +35,36 @@
 
 
   <div class="button-div">
-    <button type="button" name="button">Book another Trip</button>
+    <button class = "button" type="button" name="button">Book another Trip</button>
   </div>
   <div class="total-spent">
     <p class="amount-spent" id = "total-amount">Total Amount Spent: $xxx.xx</p>
   </div>
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  <script src="bundle.js"></script>
 
+<div class = "form-page hidden">
+  <h2>On to the next trip...</h2>
+  <form class = "book-trip" id = "book-trip">
+    <label for = "start">Start date:</label>
+
+    <input type ="date" id="start" name="trip-start" required>
+    <div class="form-input">
+      <label for ="duration"> How many days: </label>
+      <input type="number" id = "duration" name="duration" min = "0">
+    </div>
+    <label for ="travelers"> How many travelers: </label>
+    <input type="number" id = "travelers" name="travelers" min = "0">
+    <div >
+    <label for = "destinations"  >Choose a destination:</label>
+      <select class="destinations" id="dropdown" name="destinations" required>
+      <option value = "" ></option>
+      </select>
+      </div>
+
+    <input type = "submit" class="button" value = "Book Trip">
+  </form>
+</div>
+  <script src="bundle.js"></script>
 </body>
 
 </html>
