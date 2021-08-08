@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Limelight&display=swap" rel="stylesheet">
   <title>Travel Tracker</title>
 </head>
+
 <body>
-  <section class = "nav-bar">
-    <h1> hello, name </h1>
-  </section>
-  <section = "trip">
-    <h2 class = "trip-text">Your trips</h2>
-  </section>
-  <section class  = "parent">
+  <div class="nav-bar" id = "greeting">
+    <h1></h1>
+  </div>
+  <div class="trip">
+    <h2 class="trip-text">Your trips</h2>
+  </div>
+  <section class="parent" id = "card-container">
     <!-- this will be populated by the amount of cards -->
-    <section class = "trip-info">
-      <p>Pending</p>
-      <li>date: xx/xx/xxxx </li>
-      <li>Location: xxxxx, xx</li>
-    </section>
-    <section class = "trip-info">
-      <p>Pending</p>
-      <li>date: xx/xx/xxxx </li>
-      <li>Location: xxxxx, xx</li>
-    </section>
-    <section class = "trip-info">
-      <p>Pending</p>
-      <li>date: xx/xx/xxxx </li>
-      <li>Location: xxxxx, xx</li>
-    </section>
-    <section class = "trip-info">
-      <p>Pending</p>
-      <li>date: xx/xx/xxxx </li>
-      <li>Location: xxxxx, xx</li>
-    </section>
   </section>
+  <!-- <section>
+    <div class="glide">
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides">
+      <li class="glide__slide">0</li>
+      <li class="glide__slide">1</li>
+      <li class="glide__slide">2</li>
+    </ul>
+  </div>
+</div> -->
+
+
   <div class="button-div">
     <button type="button" name="button">Book another Trip</button>
   </div>
-  <div class = "total-spent">
-    <p class = "amount-spent">Total Amount Spent: $xxx.xx</p>
+  <div class="total-spent">
+    <p class="amount-spent" id = "total-amount">Total Amount Spent: $xxx.xx</p>
   </div>
   <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 
 </body>
+
 </html>

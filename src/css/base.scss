@@ -1,66 +1,148 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 @import 'variables'; // @use is maybe a better thing to use, but this is currently working
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+// @mixin flexbox() {
+//   display: -webkit-box;
+//   display: -moz-box;
+//   display: -ms-flexbox;
+//   display: -webkit-flex;
+//   display: flex;
+// }
+//
+// @mixin flex($values) {
+//   -webkit-box-flex: $values;
+//   -moz-box-flex:  $values;
+//   -webkit-flex:  $values;
+//   -ms-flex:  $values;
+//   flex:  $values;
+// }
+//
+// @mixin order($val) {
+//   -webkit-box-ordinal-group: $val;
+//   -moz-box-ordinal-group: $val;
+//   -ms-flex-order: $val;
+//   -webkit-order: $val;
+//   order: $val;
+// }
+//
+// .wrapper {
+//   @include flexbox();
+// }
+//
+// .item {
+//   @include flex(1 200px);
+//   @include order(2);
+// }
+
+
 * {
   margin: 0;
   height: 100%;
 }
 body {
-  background: $primary-background;
   border: 2px solid green;
   display: flex;
   flex-direction: column;
+  background-color: $cream;
+  font-family: 'Comfortaa', cursive;
+
 
 }
 
-h1 {
-  font-size: 30px;
-  // padding: 10%;
-}
 
 li {
   list-style-type: none;
+
 }
 
 /* Nav-bar */
 .nav-bar {
-  background-color: pink;
-  display: flex;
+  background-color: $musterd;
   height: 20%;
   width: 100%;
+  border: 2px solid blue;
+  font-family: 'Limelight', cursive;
+  color: black;
+  font-size: 30px;
 }
+
 /*Trips text */
 .trip {
   display: flex;
   height: 10%;
-  border: 10px solid blue;
+  padding-bottom: 0;
+  font-family: 'Limelight', cursive;
+
 }
 
 /* trip cards */
 .parent {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   height: 50%;
 
-  grid-template-columns: 45% 45%;
-  grid-template-rows: repeat(2, 45%);
-  grid-column-gap: 5px;
-  grid-row-gap: 5px;
-  padding: 0;
-  border: 1px solid black;
+  grid-template-columns: repeat(2, 40%);
+  grid-template-rows: repeat(4, 90%);
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  margin-top: 0;
+  // border: 1px solid black;
 
 }
+// .parent {
+//   display: flex;
+// }
 
 .trip-info {
   display: flex;
   flex-direction: column;
-  border-radius: border-radius;
+  width: 300px;
+  grid-template-columns: 300px;
+  grid-template-rows: 210px 210px;
+  grid-template-areas: "image-info" "text-info";
+  border-radius: 18px;
   background-color: white;
-  box-shadow: 1px 1px 1px grey;
-  height: 100%;
-  width: 100%;
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  text-align: center;
+  // border: 2px solid blue;
+
+
+}
+.image {
+  grid-area: image;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  // border: 2px solid red;
+  width: 300px;
+
+
 }
 
+
+
+a {
+  // border: 2px solid blue;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.text-info {
+  grid-area: text;
+  display: flex;
+  flex-direction: column;
+  // border: 5px solid black;
+  padding: 0;
+  margin: 0;
+
+}
+// .image {
+//   width: 100%;
+//   height: 40%;
+//
+// }
 /* button */
 .button-div {
   height: 10%;

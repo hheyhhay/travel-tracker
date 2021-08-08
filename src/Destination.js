@@ -16,6 +16,11 @@ class Destination {
     return this.userDestinations;
   }
 
+  getLocationById(id) {
+    const location = 0
+  }
+
+
   findTotalSpent(trips) {
 
     const total = trips.reduce((sum, trip) => {
@@ -35,6 +40,6 @@ class Destination {
     const agentFee = total + total * .1;
     return agentFee;
   }
+};
 
-}
 module.exports = Destination;
