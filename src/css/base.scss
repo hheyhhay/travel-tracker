@@ -112,16 +112,17 @@ li {
 
 
 }
-.image-info {
+.image {
   grid-area: image;
-  background: url("https://images.unsplash.com/photo-1524478075552-c2763ea171b8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1502&q=80");
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  background-size: cover;
   // border: 2px solid red;
   width: 300px;
 
+
 }
+
+
 
 a {
   // border: 2px solid blue;

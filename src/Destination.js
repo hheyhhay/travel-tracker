@@ -16,6 +16,11 @@ class Destination {
     return this.userDestinations;
   }
 
+  getLocationById(id) {
+    const location = 0
+  }
+
+
   findTotalSpent(trips) {
 
     const total = trips.reduce((sum, trip) => {
