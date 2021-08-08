@@ -61,14 +61,11 @@ li {
   height: 20%;
   width: 100%;
   border: 2px solid blue;
-
-  h1 {
-    color: black;
-    font-size: 30px;
-    font-family: 'Limelight', cursive;
-
-  }
+  font-family: 'Limelight', cursive;
+  color: black;
+  font-size: 30px;
 }
+
 /*Trips text */
 .trip {
   display: flex;
@@ -80,7 +77,8 @@ li {
 
 /* trip cards */
 .parent {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   height: 50%;

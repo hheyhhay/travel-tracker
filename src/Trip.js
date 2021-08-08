@@ -3,7 +3,7 @@ var dayjs = require('dayjs');
 class Trip {
   constructor(tripData){
     this.tripData = tripData;
-    this.date = dayjs().format('YYYY/MM/DD');
+    this.today = dayjs().format('YYYY/MM/DD');
     this.userTrips;
     this.currentTrip;
     this.pastTrips;
@@ -22,7 +22,7 @@ class Trip {
     const currentTrip = this.userTrips.filter(trip => {
       let start = trip["date"];
       let end = dayjs(trip["date"]).add(trip["duration"], 'day').format('YYYY/MM/DD');
-      if (dayjs(this.date).isBefore(end) && dayjs(this.date).isAfter(start)) {
+      if (dayjs(this.today).isBefore(end) && dayjs(this.today).isAfter(start)) {
         return trip;
       }
     })
@@ -31,12 +31,12 @@ class Trip {
   }
 
   findPastTrips(){
-    this.pastTrips = this.userTrips.filter(trip => dayjs(this.date).isAfter(trip["date"])).filter(trip => !this.currentTrip.includes(trip))
+    this.pastTrips = this.userTrips.filter(trip => dayjs(this.today).isAfter(trip["date"])).filter(trip => !this.currentTrip.includes(trip))
     return this.pastTrips;
   }
 
   findFutureTrips(){
-    this.futureTrips = this.userTrips.filter(trip => dayjs(this.date).isBefore(trip["date"])).filter(trip => !this.currentTrip.includes(trip))
+    this.futureTrips = this.userTrips.filter(trip => dayjs(this.today).isBefore(trip["date"])).filter(trip => !this.currentTrip.includes(trip))
     return this.futureTrips;
   }
 
@@ -46,8 +46,8 @@ class Trip {
   }
 
   findTripsInYear() {
-    let startOfYear = dayjs(this.date).startOf('year').format('YYYY/MM/DD')
-    let endOfYear = dayjs(this.date).endOf('year').format('YYYY/MM/DD')
+    let startOfYear = dayjs(this.today).startOf('year').format('YYYY/MM/DD')
+    let endOfYear = dayjs(this.today).endOf('year').format('YYYY/MM/DD')
 
     this.tripsThisYear = this.userTrips.filter(trip => dayjs(trip["date"]).isAfter(startOfYear, 'day') && dayjs(trip["date"]).isBefore(endOfYear, 'day') )
     return this.tripsThisYear;

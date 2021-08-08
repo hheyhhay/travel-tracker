@@ -79,10 +79,12 @@ invokeFetch()
 
 const greeting = document.getElementById("greeting");
 const cardContainer = document.getElementById("card-container")
+const totalCost = document.getElementById("total-amount")
 
 const renderPage = () => {
   renderUser()
   renderCards()
+  renderTotalSpent()
 }
 
 const renderUser = () => {
@@ -110,6 +112,16 @@ const renderCards = () => {
   cardContainer.innerHTML = cardContainerHTML;
 }
 
+const renderTotalSpent = () => {
+  trips.findTrips(19)
+  trips.findTripsInYear()
+  console.log(trips.tripsThisYear)
+  trips.findTrips(currentTraveler.id)
+  console.log(trips.findTripsInYear())
+  let yearTrips = trips.findTripsInYear()
+  console.log(yearTrips)
+  // let costHTML = `Total Amount Spent: $${destinations.findTotalSpent()}`
+}
 
 
 
