@@ -35,6 +35,6 @@ class Destination {
     const agentFee = total + total * .1;
     return agentFee;
   }
+};
 
-}
 module.exports = Destination;

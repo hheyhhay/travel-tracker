@@ -38,19 +38,21 @@
 * {
   margin: 0;
   height: 100%;
-  font-family: 'Comfortaa', cursive;
 }
 body {
   border: 2px solid green;
   display: flex;
   flex-direction: column;
   background-color: $cream;
+  font-family: 'Comfortaa', cursive;
+
 
 }
 
 
 li {
   list-style-type: none;
+
 }
 
 /* Nav-bar */
@@ -63,7 +65,7 @@ li {
   h1 {
     color: black;
     font-size: 30px;
-    font-family: 'Oi', cursive;
+    font-family: 'Limelight', cursive;
 
   }
 }
@@ -72,6 +74,8 @@ li {
   display: flex;
   height: 10%;
   padding-bottom: 0;
+  font-family: 'Limelight', cursive;
+
 }
 
 /* trip cards */
