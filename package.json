@@ -30,6 +30,7 @@
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
   },
   "dependencies": {
+    "@glidejs/glide": "^3.4.1",
     "dayjs": "^1.10.6"
   }
 }
