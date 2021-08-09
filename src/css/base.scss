@@ -37,14 +37,15 @@
 
 * {
   margin: 0;
-  height: 100%;
 }
 body {
   border: 2px solid green;
   display: flex;
   flex-direction: column;
+  align-items: center;
   background-color: $cream;
   font-family: 'Comfortaa', cursive;
+  overflow: scroll;
 
 
 }
@@ -58,7 +59,7 @@ li {
 /* Nav-bar */
 .nav-bar {
   background-color: $musterd;
-  height: 20%;
+  height: 10%;
   width: 100%;
   border: 2px solid blue;
   font-family: 'Limelight', cursive;
@@ -99,21 +100,23 @@ li {
   display: flex;
   flex-direction: column;
   width: 300px;
-  grid-template-columns: 300px;
+  grid-template-columns: 200px;
   grid-template-rows: 210px 210px;
   grid-template-areas: "image-info" "text-info";
-  border-radius: 18px;
+  // border-radius: 18px;
   background-color: white;
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.9);
+  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0,0,0,1);
   text-align: center;
+  border: 2px solid black;
+  margin-bottom: 15px;
   // border: 2px solid blue;
 
 
 }
 .image {
   grid-area: image;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  // border-top-left-radius: 15px;
+  // border-top-right-radius: 15px;
   // border: 2px solid red;
   width: 300px;
 
@@ -145,12 +148,24 @@ a {
 // }
 /* button */
 .button-div {
-  height: 10%;
+  padding-top: 5%;
+  height: 5%;
+  // border: 2px solid red;
 }
 .button {
-  border-radius: border-radius;
-  // height: 10%;
-  margin: 5%;
+  display: block;
+  margin: 0 auto;
+  line-height: $font-size *2;
+  padding: 0 20px;
+  border: 1px solid rgba(0,0,0,1);
+  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px rgba(0,0,0,1);
+  font-family: 'Limelight', cursive;
+
+  &:hover {
+    background: $musterd
+  }
+
+  // margin: 5%;
 }
 
 /* Amount Spent */
@@ -160,5 +175,43 @@ a {
 }
 .amount-spent {
   .border: 2px solid red;
+}
+
+//Form page
+.form-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: 4px solid green;
+  background-color: white;
+  height: 400px;
+  width: 40%;
+  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0,0,0,1);
+  text-align: center;
+  border: 2px solid black;
+  margin-bottom: 10%;
+
+
+  .book-trip {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    height: 80%;
+  }
+  .form-input {
+    display: flex;
+    align-items: center;
+  }
+
+  h2{
+    font-family:'Limelight', cursive;
+  }
 
 }
+
+
+
+
+
+//
