@@ -15,7 +15,6 @@ import {
 
 
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
 
 export let destinationData; // may not need to  be global
 export let tripData; // may not need to  be global
@@ -26,29 +25,18 @@ export let destinations;
 export let userTrips;
 export let userDestinations;
 console.log('This is the JavaScript entry file - your code begins here.');
-// window.addEventListerner('load', invokeFetch)
-// const fetchData = () => {
-//   addData(trip)
-// }
+
 const invokeFetch = () => {
-  // Promise.all([destinationData, tripData, travelerData])
   allData
     .then(response => parseValues(response))
     .catch(err => console.log(err))
 
-
-  // console.log(allData)
-  // allData.then(data => console.log(data))
-  // .catch(err => console.log(err))
 }
 
 const parseValues = (data) => {
   destinationData = data[0].destinations;
   tripData = data[1].trips;
   travelerData = data[2].travelers;
-  // console.log('destinationData', destinationData)
-  // console.log('tripData', tripData)
-  // console.log('travelerData', travelerData)
 
   instantiation()
   renderPage()
@@ -60,12 +48,7 @@ const instantiation = () => {
   currentTraveler = traveler.findUser(i);
   trips = new Trip(tripData);
   destinations = new Destination(destinationData)
-  // console.log(i)
-  // console.log(currentTraveler)
-  // console.log(trips.findTrips(i))
-  // console.log(trips.userTrips)
-  // console.log(trips.currentTrip)
-  // console.log(destinationData)
+
   userTrips = trips.findTrips(i)
   userDestinations = destinations.findByTrips(userTrips)
 }
@@ -89,6 +72,14 @@ const greeting = document.getElementById("greeting");
 const cardContainer = document.getElementById("card-container")
 const totalCost = document.getElementById("total-amount")
 const dropdown = document.getElementById("dropdown")
+const newTripForm = document.getElementById("book-trip")
+const bookAnotherTripBtn = document.getElementById("book-another-trip")
+const formCard = document.getElementById("form-page")
+const mainPage = document.getElementById("main-page")
+const submitTrip = document.getElementById("book-trip")
+
+//event Listeners
+
 
 const renderUser = () => {
   let greetingHTML = `Hello, ${currentTraveler.name}`
@@ -111,52 +102,49 @@ const renderCards = () => {
 
 
   })
-  // console.log(cardContainerHTML)
+
   cardContainer.innerHTML = cardContainerHTML;
 }
 
 const renderTotalSpent = () => {
   trips.findTrips(19)
   trips.findTripsInYear()
-  // console.log(trips.tripsThisYear)
   trips.findTrips(currentTraveler.id)
-  // console.log(trips.findTripsInYear())
   let yearTrips = trips.findTripsInYear()
-  // console.log(yearTrips)
-  // let costHTML = `Total Amount Spent: $${destinations.findTotalSpent()}`
 }
 
 
 const renderDropdown = () => {
-  // dropdown.empty();
 
-// console.log(destinationData)
   let dropdownHTML = "";
-//   `<select class="destination" name="destination" >`
-//
-console.log(destinationData)
   destinationData.forEach(destination => {
-    // console.log(destination.destination)
-    // console.log('here')
     dropdownHTML += `
     <label for = "destinations" >Choose a destination:</label>
-<select class="destination" id = "drop-down" name="destination" >
-<option value = "${destination.destination}" > ${destination.destination}</option> </select>`
-    console.log(dropdownHTML)
+  <select class="destination" id = "drop-down" name="destination" >
+``<option value = "${destination.destination}" > ${destination.destination}</option> </select>`
   })
-  console.log(greeting)
-  // console.log(dropdownHTML)
-  console.log(dropdown)
   dropdown.innerHTML = dropdownHTML;
-
-  // let stringDropdown = dropdownHTML.join()
-  // let dropdownHTML = `<p>HI</p>`
-
-
 }
 
 
+// const showForm = () => {
+//   console.log('clicked')
+//
+//   formCard.classList.remove("hidden");
+//   mainPage.classList.add("hidden")
+//
+// }
 
+const bookTrip = (event) => {
+  console.log(event)
+  event.preventDefault();
+  event.stopImmediate Propagation();
+  const formData = new FormData(event.target);
+  console.log('date in form', formData.get('date'))
+}
+
+// bookAnotherTripBtn.addEventListener('click', showForm)
+submitTrip.addEventListener('submit', () => bookTrip(event))
 
 
 //
