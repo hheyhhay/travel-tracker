@@ -100,6 +100,10 @@ describe.only('Destination', () => {
     })
   })
 
+  it('should be able to find destinationID by destination name', () => {
+
+    expect(destination.findId("San Francisco, California")).to.deep.equal(27)
+  })
   it('should be abelt to find all destinations of trips for user', () => {
     destination.findByTrips(trip.userTrips)
     expect(destination.userDestinations).to.deep.equal([{

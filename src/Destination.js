@@ -16,6 +16,11 @@ class Destination {
     return this.userDestinations;
   }
 
+  findId(destinationName) {
+    const id = this.destinations.find(destination =>  destination.destination === destinationName).id;
+    return id;
+  }
+
   getLocationById(id) {
     const location = 0
   }
