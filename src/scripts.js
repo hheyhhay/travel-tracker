@@ -120,8 +120,8 @@ const renderDropdown = () => {
   destinationData.forEach(destination => {
     dropdownHTML += `
     <label for = "destinations" >Choose a destination:</label>
-  <select class="destination" id = "drop-down" name="destination" >
-``<option value = "${destination.destination}" > ${destination.destination}</option> </select>`
+    <select class="destination" id = "drop-down" name="destination" >
+    <option value = "${destination.destination}" > ${destination.destination}</option> </select>`
   })
   dropdown.innerHTML = dropdownHTML;
 }
@@ -136,11 +136,13 @@ const renderDropdown = () => {
 // }
 
 const bookTrip = (event) => {
-  console.log(event)
   event.preventDefault();
-  event.stopImmediate Propagation();
+  console.log('event.target', event.target.parentNode)
+
+  // event.stopImmediatePropagation();
   const formData = new FormData(event.target);
-  console.log('date in form', formData.get('date'))
+  console.log('formData', formData)
+  console.log('date in form', formData.get('start'))
 }
 
 // bookAnotherTripBtn.addEventListener('click', showForm)

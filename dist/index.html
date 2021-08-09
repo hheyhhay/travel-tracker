@@ -1,72 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Limelight&display=swap" rel="stylesheet">
-  <title>🌈Travel Tracker</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Limelight&display=swap" rel="stylesheet">
+    <title>🌈Travel Tracker</title>
+  </head>
 
-<body>
-  <div class="nav-bar" id="greeting">
-    <h1></h1>
-  </div>
-  <div class="main-page" id="main-page">
-    <div class="trip">
-      <h2 class="trip-text">Your trips</h2>
+  <body>
+    <div class="nav-bar" id="greeting">
+      <h1></h1>
     </div>
-    <section class="parent" id="card-container">
-      <!-- this will be populated by the amount of cards -->
-    </section>
-    <!-- <section>
-    <div class="glide">
-  <div class="glide__track" data-glide-el="track">
-    <ul class="glide__slides">
-      <li class="glide__slide">0</li>
-      <li class="glide__slide">1</li>
-      <li class="glide__slide">2</li>
-    </ul>
-  </div>
-</div> -->
-
-
-    <div class="button-div">
-      <button class="button" id="book-another-trip" type="button" name="button">Book another Trip</button>
-    </div>
-    <div class="total-spent">
-      <p class="amount-spent" id="total-amount">Total Amount Spent: $xxx.xx</p>
-    </div>
-  </div>
-  <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
-  <!-- put hidden back in! -->
-  <div class="form-page" id="form-page">
-    <h2>On to the next trip...</h2>
-    <form class="book-trip" id="book-trip">
-      <label for="start">Start date:</label>
-      <!-- for date -> put min date as today -->
-      <input type="date" id="start" name="trip-start" required>
-      <div class="form-input">
-        <label for="duration"> How many days: </label>
-        <input type="number" id="duration" name="duration" min="0">
+    <div class="main-page" id="main-page">
+      <div class="trip">
+        <h2 class="trip-text">Your trips</h2>
       </div>
-      <label for="travelers"> How many travelers: </label>
-      <input type="number" id="travelers" name="travelers" min="0">
-      <div>
-        <label for="destinations">Choose a destination:</label>
-        <select class="destinations" id="dropdown" name="destinations" required>
-          <option value=""></option>
-        </select>
+      <section class="parent" id="card-container">
+        <!-- this will be populated by the amount of cards -->
+      </section>
+      <div class="button-div">
+        <button class="button" id="book-another-trip" type="button" name="button">Book another Trip</button>
       </div>
+      <div class="total-spent">
+        <p class="amount-spent" id="total-amount">Total Amount Spent: $xxx.xx</p>
+      </div>
+    </div>
 
-      <input type="submit" class="button" value="submit">
-    </form>
-  </div>
-  <script src="bundle.js"></script>
-</body>
+    <!-- put hidden back in! -->
+    <div class="form-page" id="form-page">
+      <h2>On to the next trip...</h2>
+      <form class="book-trip" id="book-trip">
+        <label for="date">Start date:</label>
+        <!-- for date -> put min date as today -->
+        <input type="date" name="date" required>
+        <div class="form-input">
+          <label for="duration"> How many days: </label>
+          <input type="number" name="duration" min="0">
+        </div>
+        <label for="travelers"> How many travelers: </label>
+        <input type="number" name="travelers" min="0">
+        <div>
+          <label for="destinations">Choose a destination:</label>
+          <select class="destinations"  name="destinations" id="dropdown"required>
+            <option value=""></option>
+          </select>
+        </div>
+
+        <input type="submit" class="button" value="submit">
+      </form>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
 
 </html>
