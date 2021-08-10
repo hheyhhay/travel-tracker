@@ -1,7 +1,4 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 
-// An example of how you tell webpack to use a CSS (SCSS) file
 var dayjs = require('dayjs');
 
 import './css/base.scss';
@@ -9,15 +6,12 @@ import './css/base.scss';
 import Traveler from './Traveler';
 import Trip from './Trip';
 import Destination from './Destination';
-import {renderPage, dropdown, tripTravelers, tripDuration, calenderDate, submitTrip, bookBtn, renderCards, renderCardBack} from './domUpdates';
+import {renderPage, dropdown, tripTravelers, tripDuration, calenderDate, submitTrip, backPage, bookBtn, formContainer, renderCards, renderCardBack, showCards} from './domUpdates';
 import {
   allData, postTrip
 } from './apiCalls';
 
-
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-
+// Gloabal Varibles
 export let destinationData; // may not need to  be global
 export let tripData; // may not need to  be global
 export let travelerData; // may not need to  be global
@@ -26,17 +20,14 @@ export let trips;
 export let destinations;
 export let userTrips;
 export let userDestinations;
-console.log('This is the JavaScript entry file - your code begins here.');
-
-
+let newTrip;
 
 export const invokeFetch = () => {
   allData
     .then(response => parseValues(response))
     .catch(err => console.log(err)) // ADD DOM ERROR!
-
 }
-//Make sure destinationData.length is updated after the post/get to keep newTrip id working
+
 const parseValues = (data) => {
 
   destinationData = data[0].destinations;
@@ -63,7 +54,7 @@ const bookTrip = (event) => {
   event.preventDefault();
   event.stopImmediatePropagation();
 
- const newTrip = {
+ newTrip = {
     id: 1 + tripData.length++,
     userID:currentTraveler.id,
     destinationID: destinations.findId(dropdown.value),
@@ -73,17 +64,18 @@ const bookTrip = (event) => {
     status: 'pending',
     suggestedActivities: []
   }
+
   renderCardBack(newTrip)
-  // validatePost(newTrip)
-
   event.target.reset()
-
 }
+
 const publishTrip = (event) => {
   event.preventDefault()
-  console.log('click')
+  console.log(event)
+  console.log('click PublishTrip')
   console.log(newTrip)
   validatePost(newTrip)
+  showCards();
 }
 
 const validatePost = (obj) => {
@@ -102,12 +94,7 @@ const validatePost = (obj) => {
 
 }
 
-//ALL DOM MANIPULATION DOWN HERE FOR CHANGING
-//Query Selectoctor
-console.log('here?', bookBtn)
+// Event Listeners
 submitTrip.addEventListener('submit', () => bookTrip(event)) // IF LEAVE COMMENT & JUSTIFY IT
-bookBtn.addEventListener('click', () => publishTrip(event))
+backPage.addEventListener('click', () => publishTrip(event))
 window.addEventListener('load', invokeFetch) // should this be here or in dom
-
-
-//

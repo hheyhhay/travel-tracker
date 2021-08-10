@@ -1,37 +1,6 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
 @import 'variables'; // @use is maybe a better thing to use, but this is currently working
-@import "node_modules/@glidejs/glide/src/assets/sass/glide.core"; // @mixin flexbox() {
-//   display: -webkit-box;
-//   display: -moz-box;
-//   display: -ms-flexbox;
-//   display: -webkit-flex;
-//   display: flex;
-// }
-//
-// @mixin flex($values) {
-//   -webkit-box-flex: $values;
-//   -moz-box-flex:  $values;
-//   -webkit-flex:  $values;
-//   -ms-flex:  $values;
-//   flex:  $values;
-// }
-//
-// @mixin order($val) {
-//   -webkit-box-ordinal-group: $val;
-//   -moz-box-ordinal-group: $val;
-//   -ms-flex-order: $val;
-//   -webkit-order: $val;
-//   order: $val;
-// }
-//
-// .wrapper {
-//   @include flexbox();
-// }
-//
-// .item {
-//   @include flex(1 200px);
-//   @include order(2);
-// }
+
 
 * {
   margin: 0;
@@ -54,7 +23,6 @@ li {
   background-color: $musterd;
   height: 10%;
   width: 100%;
-  border: 2px solid blue;
   font-family: 'Limelight', cursive;
   color: black;
   font-size: 30px;
@@ -78,7 +46,6 @@ li {
   grid-column-gap: 15px;
   grid-row-gap: 15px;
   margin-top: 0;
-  // border: 1px solid black;
 }
 
 
@@ -102,7 +69,6 @@ li {
 }
 
 a {
-  // border: 2px solid blue;
   font-size: 20px;
   padding: 0;
   margin: 0;
@@ -112,13 +78,15 @@ a {
   grid-area: text;
   display: flex;
   flex-direction: column;
-  // border: 5px solid black;
   padding: 0;
   margin: 0;
 }
 
 .button-div {
+  display: flex;
+
   padding-top: 5%;
+  padding-bottom: 5%;
   height: 5%;
 }
 
@@ -136,22 +104,9 @@ a {
   }
   // margin: 5%;
 }
-/* Amount Spent */
-.total-spent {
-  height: 10%;
 
-}
-
-.amount-spent {
-  margin-left: auto;
-  margin-right: auto;
-  border: 2px solid red;
-}
 //Form page
 .form-container {
-  // display: flex;
-  // flex-direction: center;
-  border: 2px solid blue;
   height: 500px;
   width: 100%;
 }

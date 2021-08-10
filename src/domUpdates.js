@@ -1,16 +1,26 @@
 var dayjs = require('dayjs');
 
-import {invokeFetch, currentTraveler, userTrips, destinations, trips, destinationData, tripData, newTrip} from './scripts'
+import {
+  invokeFetch,
+  currentTraveler,
+  userTrips,
+  destinations,
+  trips,
+  destinationData,
+  tripData,
+  newTrip
+} from './scripts'
 
 import Trip from './Trip';
 
-import {postTrip} from './apiCalls';
+import {
+  postTrip
+} from './apiCalls';
 
 export const renderPage = () => {
   console.log('connected to Dom')
   renderUser()
   renderCards(userTrips)
-  renderTotalSpent()
   renderDropdown()
 }
 
@@ -21,19 +31,15 @@ const totalCost = document.getElementById("total-amount")
 const newTripForm = document.getElementById("book-trip")
 const bookAnotherTripBtn = document.getElementById("book-another-trip")
 const formCard = document.getElementById("form-page")
+export const formContainer = document.getElementById("form-container")
 const mainPage = document.getElementById("main-page")
 export const submitTrip = document.getElementById("book-trip")
 export const calenderDate = document.getElementById("date")
 export const tripDuration = document.getElementById("duration")
 export const tripTravelers = document.getElementById("travelers")
 export const dropdown = document.getElementById("dropdown")
-const backPage = document.getElementById("form-back")
+export const backPage = document.getElementById("form-back")
 export const bookBtn = document.getElementById("book-btn")
-
-
-
-//event Listeners
-// window.addEventListener('load', invokeFetch) // should this be here or in dom
 
 
 const renderUser = () => {
@@ -49,9 +55,11 @@ export const renderCards = (userTripsArray) => {
         <img class = "image" src = "${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
         <div class="text-info">
           <span class="status"> ${trip.status}</span>
-          <a>Your upcoming trip to  ${destinations.findById(trip.destinationID).destination}</a>
-          <li>on ${dayjs(trip.date).format("DD/MM/YYYY")} </li>
-          <li>Travelers: ${trip.travelers}</li>
+          <a>Your ${trips.findTenseOfTrip(trip)} trip to  ${destinations.findById(trip.destinationID).destination}</a>
+          <ul>
+            <li>on ${dayjs(trip.date).format("MM/DD/YYYY")} </li>
+            <li>for ${trip.travelers} travelers </li>
+          </ul>
         </div>
       </section>`
   })
@@ -59,13 +67,21 @@ export const renderCards = (userTripsArray) => {
   cardContainer.innerHTML = cardContainerHTML;
 }
 
-const findTenseOfTrip = (trip)
 
-const renderTotalSpent = () => {
-  trips.findTrips(19)
-  trips.findTripsInYear()
+
+const totalSpent = () => { // doublec check this math!
+  /// NEED TO HAVE IT UPDATE WITH NEW CARD BOOKED.. maybe?
+
   trips.findTrips(currentTraveler.id)
   let yearTrips = trips.findTripsInYear()
+
+  if (!destinations.findTotalSpent(yearTrips)) {
+    totalCost.innerHTML = `You need to travel more! $0 spent in ${dayjs(trips.today).year()}`
+  } else {
+    totalCost.innerHTML = `Beautiful! You've spent $${destinations.findTotalSpent(yearTrips)} on trips in ${dayjs(trips.today).year()}`
+
+  }
+  event.reset() // says it doesn't work but it does allow it tor reset... need to explore thsi bug
 }
 
 
@@ -82,7 +98,8 @@ const renderDropdown = () => {
 }
 
 export const renderCardBack = (trip) => {
-  console.log('?')
+  console.log(trip)
+  console.log(destinations.findTotalSpent([trip]))
 
   let cardBackHTML = `<img class="image" src="${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
   <h2>${destinations.findById(trip.destinationID).destination}</h2>
@@ -93,17 +110,24 @@ export const renderCardBack = (trip) => {
   </div>`
 
   backPage.innerHTML = cardBackHTML;
+
+  formCard.classList.add("hidden")
+  backPage.classList.remove("hidden")
   console.log('bookbtn inDOM', bookBtn)
 }
-// const showForm = () => {
-//   console.log('clicked')
-//
-//   formCard.classList.remove("hidden");
-//   mainPage.classList.add("hidden")
-//
-// }
+
+const showForm = (event) => {
+  formContainer.classList.remove("hidden")
+  formCard.classList.remove("hidden");
+  mainPage.classList.add("hidden")
+}
+
+export const showCards = () => {
+  formContainer.classList.add("hidden");
+  backPage.classList.add("hidden");
+  mainPage.classList.remove("hidden")
+}
 
 
-
-// is POST a domUPdate? or a scripts file!
-// bookAnotherTripBtn.addEventListener('click', showForm)
+bookAnotherTripBtn.addEventListener('click', showForm)
+totalCost.addEventListener('click', totalSpent)
