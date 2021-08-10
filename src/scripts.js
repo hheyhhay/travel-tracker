@@ -1,22 +1,17 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
 
-// An example of how you tell webpack to use a CSS (SCSS) file
+var dayjs = require('dayjs');
+
 import './css/base.scss';
 
 import Traveler from './Traveler';
 import Trip from './Trip';
 import Destination from './Destination';
-
+import {renderPage, dropdown, tripTravelers, tripDuration, calenderDate, submitTrip, backPage, bookBtn, formContainer, renderCards, renderCardBack, showCards} from './domUpdates';
 import {
-  allData
+  allData, postTrip
 } from './apiCalls';
 
-
-
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-
+// Gloabal Varibles
 export let destinationData; // may not need to  be global
 export let tripData; // may not need to  be global
 export let travelerData; // may not need to  be global
@@ -25,30 +20,19 @@ export let trips;
 export let destinations;
 export let userTrips;
 export let userDestinations;
-console.log('This is the JavaScript entry file - your code begins here.');
-// window.addEventListerner('load', invokeFetch)
-// const fetchData = () => {
-//   addData(trip)
-// }
-const invokeFetch = () => {
-  // Promise.all([destinationData, tripData, travelerData])
+let newTrip;
+
+export const invokeFetch = () => {
   allData
     .then(response => parseValues(response))
-    .catch(err => console.log(err))
-
-
-  // console.log(allData)
-  // allData.then(data => console.log(data))
-  // .catch(err => console.log(err))
+    .catch(err => console.log(err)) // ADD DOM ERROR!
 }
 
 const parseValues = (data) => {
+
   destinationData = data[0].destinations;
   tripData = data[1].trips;
   travelerData = data[2].travelers;
-  // console.log('destinationData', destinationData)
-  // console.log('tripData', tripData)
-  // console.log('travelerData', travelerData)
 
   instantiation()
   renderPage()
@@ -60,103 +44,57 @@ const instantiation = () => {
   currentTraveler = traveler.findUser(i);
   trips = new Trip(tripData);
   destinations = new Destination(destinationData)
-  // console.log(i)
-  // console.log(currentTraveler)
-  // console.log(trips.findTrips(i))
-  // console.log(trips.userTrips)
-  // console.log(trips.currentTrip)
-  // console.log(destinationData)
+
   userTrips = trips.findTrips(i)
   userDestinations = destinations.findByTrips(userTrips)
 }
 
-invokeFetch()
 
+const bookTrip = (event) => {
+  event.preventDefault();
+  event.stopImmediatePropagation();
 
+ newTrip = {
+    id: 1 + tripData.length++,
+    userID:currentTraveler.id,
+    destinationID: destinations.findId(dropdown.value),
+    travelers: tripTravelers.value,
+    date: dayjs(calenderDate.value).format('YYYY/MM/DD'),
+    duration: tripDuration.value,
+    status: 'pending',
+    suggestedActivities: []
+  }
 
-//ALL DOM MANIPULATION DOWN HERE FOR CHANGING
-//Query Selectoctor
-
-
-
-const renderPage = () => {
-  renderUser()
-  renderCards()
-  renderTotalSpent()
-  renderDropdown()
-}
-const greeting = document.getElementById("greeting");
-const cardContainer = document.getElementById("card-container")
-const totalCost = document.getElementById("total-amount")
-const dropdown = document.getElementById("dropdown")
-
-const renderUser = () => {
-  let greetingHTML = `Hello, ${currentTraveler.name}`
-  greeting.innerHTML = greetingHTML;
+  renderCardBack(newTrip)
+  event.target.reset()
 }
 
-const renderCards = () => {
-
-  let cardContainerHTML = userTrips.map(trip => {
-
-    return `<section class="trip-info" >
-        <img class = "image" src = "${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
-        <div class="text-info">
-          <span class="status"> ${trip.status}</span>
-          <a>Location: ${destinations.findById(trip.destinationID).destination}</a>
-          <li>date: ${trip.date} </li>
-          <li>Travelers: ${trip.travelers}</li>
-        </div>
-      </section>`
-
-
-  })
-  // console.log(cardContainerHTML)
-  cardContainer.innerHTML = cardContainerHTML;
+const publishTrip = (event) => {
+  event.preventDefault()
+  console.log(event)
+  console.log('click PublishTrip')
+  console.log(newTrip)
+  validatePost(newTrip)
+  showCards();
 }
 
-const renderTotalSpent = () => {
-  trips.findTrips(19)
-  trips.findTripsInYear()
-  // console.log(trips.tripsThisYear)
-  trips.findTrips(currentTraveler.id)
-  // console.log(trips.findTripsInYear())
-  let yearTrips = trips.findTripsInYear()
-  // console.log(yearTrips)
-  // let costHTML = `Total Amount Spent: $${destinations.findTotalSpent()}`
-}
-
-
-const renderDropdown = () => {
-  // dropdown.empty();
-
-// console.log(destinationData)
-  let dropdownHTML = "";
-//   `<select class="destination" name="destination" >`
-//
-console.log(destinationData)
-  destinationData.forEach(destination => {
-    // console.log(destination.destination)
-    // console.log('here')
-    dropdownHTML += `
-    <label for = "destinations" >Choose a destination:</label>
-<select class="destination" id = "drop-down" name="destination" >
-<option value = "${destination.destination}" > ${destination.destination}</option> </select>`
-    console.log(dropdownHTML)
-  })
-  console.log(greeting)
-  // console.log(dropdownHTML)
-  console.log(dropdown)
-  dropdown.innerHTML = dropdownHTML;
-
-  // let stringDropdown = dropdownHTML.join()
-  // let dropdownHTML = `<p>HI</p>`
-
+const validatePost = (obj) => {
+  postTrip(obj)
+    .then(response => {
+      return fetch("http://localhost:3001/api/v1/trips")
+    })
+    .then(response => response.json())
+    .then(data => {
+      trips = new Trip(data.trips)
+      userTrips = trips.findTrips(currentTraveler.id)
+      renderCards(userTrips)
+      return trips;
+    })
+    .catch(err => console.log(err))
 
 }
 
-
-
-
-
-//
+// Event Listeners
+submitTrip.addEventListener('submit', () => bookTrip(event)) // IF LEAVE COMMENT & JUSTIFY IT
+backPage.addEventListener('click', () => publishTrip(event))
+window.addEventListener('load', invokeFetch) // should this be here or in dom

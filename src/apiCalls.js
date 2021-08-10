@@ -18,3 +18,14 @@ const travelerFetch = fetch("http://localhost:3001/api/v1/travelers")
 export const allData = Promise.all((([destinationFetch, tripFetch, travelerFetch])))
   // .then(values => values)
   // .catch(err => console.log('could not retrieve data'))
+export const postTrip = (tripObj) => {
+  return fetch("http://localhost:3001/api/v1/trips", {
+    method: 'POST',
+    body: JSON.stringify(tripObj),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  }).then(response => response.json())
+}
+
+//make sure there is an error handling on on the post somewhere?

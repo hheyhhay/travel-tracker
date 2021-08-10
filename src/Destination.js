@@ -16,11 +16,18 @@ class Destination {
     return this.userDestinations;
   }
 
+  findId(destinationName) {
+    const id = this.destinations.find(destination =>  destination.destination === destinationName).id;
+    return id;
+  }
+
   getLocationById(id) {
     const location = 0
   }
 
-
+  // findPriceByTrip(trip){
+  //   const totalByTraveler = trip.travelers *
+  // }
   findTotalSpent(trips) {
 
     const total = trips.reduce((sum, trip) => {
