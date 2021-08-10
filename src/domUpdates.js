@@ -1,14 +1,20 @@
 var dayjs = require('dayjs');
 
-import {currentTraveler, userTrips, destinations, trips, destinationData} from './scripts'
+import {invokeFetch, currentTraveler, userTrips, destinations, trips, destinationData, tripData, newTrip} from './scripts'
+
+import Trip from './Trip';
+
+import {postTrip} from './apiCalls';
 
 export const renderPage = () => {
   console.log('connected to Dom')
   renderUser()
-  renderCards()
+  renderCards(userTrips)
   renderTotalSpent()
   renderDropdown()
 }
+
+
 const greeting = document.getElementById("greeting");
 const cardContainer = document.getElementById("card-container")
 const totalCost = document.getElementById("total-amount")
@@ -16,14 +22,17 @@ const newTripForm = document.getElementById("book-trip")
 const bookAnotherTripBtn = document.getElementById("book-another-trip")
 const formCard = document.getElementById("form-page")
 const mainPage = document.getElementById("main-page")
-const submitTrip = document.getElementById("book-trip")
-const calenderDate = document.getElementById("date")
-const tripDuration = document.getElementById("duration")
-const tripTravelers = document.getElementById("travelers")
-const dropdown = document.getElementById("dropdown")
+export const submitTrip = document.getElementById("book-trip")
+export const calenderDate = document.getElementById("date")
+export const tripDuration = document.getElementById("duration")
+export const tripTravelers = document.getElementById("travelers")
+export const dropdown = document.getElementById("dropdown")
+const backPage = document.getElementById("form-back")
+
 
 
 //event Listeners
+// window.addEventListener('load', invokeFetch) // should this be here or in dom
 
 
 const renderUser = () => {
@@ -31,9 +40,9 @@ const renderUser = () => {
   greeting.innerHTML = greetingHTML;
 }
 
-const renderCards = () => {
+export const renderCards = (userTripsArray) => {
 
-  let cardContainerHTML = userTrips.map(trip => {
+  let cardContainerHTML = userTripsArray.map(trip => {
 
     return `<section class="trip-info" >
         <img class = "image" src = "${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
@@ -71,7 +80,19 @@ const renderDropdown = () => {
   dropdown.innerHTML = dropdownHTML;
 }
 
+export const renderCardBack = (trip) => {
+  console.log('?')
 
+  let cardBackHTML = `<img class="image" src="${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
+  <h2>${destinations.findById(trip.destinationID).destination}</h2>
+  <h2>costs: $55005.00</h2>
+  <div class="buttons">
+    <button type="button" class="button" name="book-it">Book it!</button>
+    <button type="button" class="button" name="no-thanks">No thanks</button>
+  </div>`
+
+  backPage.innerHTML = cardBackHTML;
+}
 // const showForm = () => {
 //   console.log('clicked')
 //
@@ -80,27 +101,7 @@ const renderDropdown = () => {
 //
 // }
 
-const bookTrip = (event) => {
-  event.preventDefault();
-  console.log(calenderDate.value)
-  console.log(tripDuration.value)
-  console.log(tripTravelers.value)
-  console.log(dropdown.value)
-  console.log(destinations.findId("San Francisco, California"))
-
-  const newTrip = {
-    id: destinationData.length++,
-    userID:currentTraveler.id,
-    destinationID: destinations.findId(dropdown.value),
-    travelers: tripTravelers.value,
-    date: dayjs(calenderDate.value).format('YYYY/MM/DD'),
-    duration: tripDuration.value,
-    status: 'pending',
-    suggestedActivities: []
-  }
-console.log(newTrip)
-}
 
 
+// is POST a domUPdate? or a scripts file!
 // bookAnotherTripBtn.addEventListener('click', showForm)
-submitTrip.addEventListener('submit', () => bookTrip(event))

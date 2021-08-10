@@ -1,60 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Limelight&display=swap" rel="stylesheet">
-    <title>🌈Travel Tracker</title>
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Limelight&display=swap" rel="stylesheet">
+  <title>🌈Travel Tracker</title>
+</head>
 
-  <body>
-    <div class="nav-bar" id="greeting">
-      <h1></h1>
+<body>
+  <div class="nav-bar" id="greeting">
+    <h1></h1>
+  </div>
+  <div class="main-page hidden" id="main-page">
+    <div class="trip">
+      <h2 class="trip-text">Your trips</h2>
     </div>
-    <div class="main-page" id="main-page">
-      <div class="trip">
-        <h2 class="trip-text">Your trips</h2>
-      </div>
-      <section class="parent" id="card-container">
-        <!-- this will be populated by the amount of cards -->
-      </section>
-      <div class="button-div">
-        <button class="button" id="book-another-trip" type="button" name="button">Book another Trip</button>
-      </div>
-      <div class="total-spent">
-        <p class="amount-spent" id="total-amount">Total Amount Spent: $xxx.xx</p>
-      </div>
+    <section class="parent" id="card-container">
+      <!-- this will be populated by the amount of cards -->
+    </section>
+    <div class="button-div">
+      <button class="button" id="book-another-trip" type="button" name="button">Book another Trip</button>
     </div>
+    <div class="total-spent">
+      <p class="amount-spent" id="total-amount">Total Amount Spent: $xxx.xx</p>
+    </div>
+  </div>
 
-    <!-- put hidden back in! -->
+  <!-- put hidden back in! -->
+  <div class="form-container">
     <div class="form-page" id="form-page">
-      <h2>On to the next trip...</h2>
-      <form class="book-trip" id="book-trip">
-        <label for="date">Start date:</label>
-        <!-- for date -> put min date as today -->
-        <input type="date" name="date" id = "date" required>
-        <div class="form-input">
-          <label for="duration"> How many days: </label>
-          <input type="number" name="duration" id ="duration" min="0">
-        </div>
-        <label for="travelers"> How many travelers: </label>
-        <input type="number" name="travelers" id = "travelers" min="0">
-        <div>
-          <label for="destinations">Choose a destination:</label>
-          <select class="destinations"  name="destinations" id="dropdown"required>
-            <option value=""></option>
-          </select>
-        </div>
+        <h2>On to the next trip...</h2>
+        <form class="book-trip" id="book-trip">
+          <label for="date">Start date:</label>
+          <!-- for date -> put min date as today -->
+          <input type="date" name="date" id="date" required>
+          <div class="form-input">
+            <label for="duration"> How many days: </label>
+            <input type="number" name="duration" id="duration" min="0">
+          </div>
+          <label for="travelers"> How many travelers: </label>
+          <input type="number" name="travelers" id="travelers" min="0">
+          <div>
+            <label for="destinations">Choose a destination:</label>
+            <select class="destinations" name="destinations" id="dropdown" required>
+              <option value=""></option>
+            </select>
+          </div>
+          <input type="submit" class="button" value="check pricings">
+        </form>
+        <div class="form-back">
 
-        <input type="submit" class="button" value="submit">
-      </form>
+
+        </div>
+      </div>
+    <div class="form-page back" id="form-back">
+      <img class="image" src="https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="overview of city buildings with a clear sky">
+      <h2>Your trip to Denver, CO</h2>
+      <h2>costs: $55005.00</h2>
+      <div class="buttons">
+        <button type="button" class="button" name="book-it">Book it!</button>
+        <button type="button" class="button" name="no-thanks">No thanks</button>
+      </div>
     </div>
-    <script src="bundle.js"></script>
-  </body>
+  </div>
+  <script src="bundle.js"></script>
+</body>
 
 </html>

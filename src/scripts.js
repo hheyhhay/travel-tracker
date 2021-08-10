@@ -2,14 +2,16 @@
 // Do not delete or rename this file ********
 
 // An example of how you tell webpack to use a CSS (SCSS) file
+var dayjs = require('dayjs');
+
 import './css/base.scss';
 
 import Traveler from './Traveler';
 import Trip from './Trip';
 import Destination from './Destination';
-import {renderPage} from './domUpdates';
+import {renderPage, dropdown, tripTravelers, tripDuration, calenderDate, submitTrip, renderCards, renderCardBack} from './domUpdates';
 import {
-  allData
+  allData, postTrip
 } from './apiCalls';
 
 
@@ -26,10 +28,12 @@ export let userTrips;
 export let userDestinations;
 console.log('This is the JavaScript entry file - your code begins here.');
 
-const invokeFetch = () => {
+
+
+export const invokeFetch = () => {
   allData
     .then(response => parseValues(response))
-    .catch(err => console.log(err))
+    .catch(err => console.log(err)) // ADD DOM ERROR!
 
 }
 //Make sure destinationData.length is updated after the post/get to keep newTrip id working
@@ -38,7 +42,7 @@ const parseValues = (data) => {
   destinationData = data[0].destinations;
   tripData = data[1].trips;
   travelerData = data[2].travelers;
-  
+
   instantiation()
   renderPage()
 }
@@ -54,14 +58,50 @@ const instantiation = () => {
   userDestinations = destinations.findByTrips(userTrips)
 }
 
-invokeFetch()
 
+const bookTrip = (event) => {
+  event.preventDefault();
+  event.stopImmediatePropagation();
 
+ const newTrip = {
+    id: 1 + tripData.length++,
+    userID:currentTraveler.id,
+    destinationID: destinations.findId(dropdown.value),
+    travelers: tripTravelers.value,
+    date: dayjs(calenderDate.value).format('YYYY/MM/DD'),
+    duration: tripDuration.value,
+    status: 'pending',
+    suggestedActivities: []
+  }
+  renderCardBack(newTrip)
+  // validatePost(newTrip)
+
+  event.target.reset()
+
+}
+
+const validatePost = (obj) => {
+  postTrip(obj)
+    .then(response => {
+      return fetch("http://localhost:3001/api/v1/trips")
+    })
+    .then(response => response.json())
+    .then(data => {
+      trips = new Trip(data.trips)
+      userTrips = trips.findTrips(currentTraveler.id)
+      renderCards(userTrips)
+      return trips;
+    })
+    .catch(err => console.log(err))
+
+}
 
 //ALL DOM MANIPULATION DOWN HERE FOR CHANGING
 //Query Selectoctor
 
+submitTrip.addEventListener('submit', () => bookTrip(event)) // IF LEAVE COMMENT & JUSTIFY IT
 
+window.addEventListener('load', invokeFetch) // should this be here or in dom
 
 
 //
