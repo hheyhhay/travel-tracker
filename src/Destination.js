@@ -25,7 +25,9 @@ class Destination {
     const location = 0
   }
 
-
+  // findPriceByTrip(trip){
+  //   const totalByTraveler = trip.travelers *
+  // }
   findTotalSpent(trips) {
 
     const total = trips.reduce((sum, trip) => {

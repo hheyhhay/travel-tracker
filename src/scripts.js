@@ -9,7 +9,7 @@ import './css/base.scss';
 import Traveler from './Traveler';
 import Trip from './Trip';
 import Destination from './Destination';
-import {renderPage, dropdown, tripTravelers, tripDuration, calenderDate, submitTrip, renderCards, renderCardBack} from './domUpdates';
+import {renderPage, dropdown, tripTravelers, tripDuration, calenderDate, submitTrip, bookBtn, renderCards, renderCardBack} from './domUpdates';
 import {
   allData, postTrip
 } from './apiCalls';
@@ -79,6 +79,12 @@ const bookTrip = (event) => {
   event.target.reset()
 
 }
+const publishTrip = (event) => {
+  event.preventDefault()
+  console.log('click')
+  console.log(newTrip)
+  validatePost(newTrip)
+}
 
 const validatePost = (obj) => {
   postTrip(obj)
@@ -98,9 +104,9 @@ const validatePost = (obj) => {
 
 //ALL DOM MANIPULATION DOWN HERE FOR CHANGING
 //Query Selectoctor
-
+console.log('here?', bookBtn)
 submitTrip.addEventListener('submit', () => bookTrip(event)) // IF LEAVE COMMENT & JUSTIFY IT
-
+bookBtn.addEventListener('click', () => publishTrip(event))
 window.addEventListener('load', invokeFetch) // should this be here or in dom
 
 

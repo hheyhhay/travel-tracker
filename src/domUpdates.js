@@ -28,6 +28,7 @@ export const tripDuration = document.getElementById("duration")
 export const tripTravelers = document.getElementById("travelers")
 export const dropdown = document.getElementById("dropdown")
 const backPage = document.getElementById("form-back")
+export const bookBtn = document.getElementById("book-btn")
 
 
 
@@ -48,17 +49,17 @@ export const renderCards = (userTripsArray) => {
         <img class = "image" src = "${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
         <div class="text-info">
           <span class="status"> ${trip.status}</span>
-          <a>Location: ${destinations.findById(trip.destinationID).destination}</a>
-          <li>date: ${trip.date} </li>
+          <a>Your upcoming trip to  ${destinations.findById(trip.destinationID).destination}</a>
+          <li>on ${dayjs(trip.date).format("DD/MM/YYYY")} </li>
           <li>Travelers: ${trip.travelers}</li>
         </div>
       </section>`
-
-
   })
 
   cardContainer.innerHTML = cardContainerHTML;
 }
+
+const findTenseOfTrip = (trip)
 
 const renderTotalSpent = () => {
   trips.findTrips(19)
@@ -74,8 +75,8 @@ const renderDropdown = () => {
   destinationData.forEach(destination => {
     dropdownHTML += `
     <label for = "destinations" >Choose a destination:</label>
-    <select class="destination" id = "drop-down" name="destination" >
-    <option value = "${destination.destination}" > ${destination.destination}</option> </select>`
+    <select class= "destinations input" id = "drop-down" name="destination" >
+    <option value = "${destination.destination}" class = "input"> ${destination.destination}</option> </select>`
   })
   dropdown.innerHTML = dropdownHTML;
 }
@@ -87,11 +88,12 @@ export const renderCardBack = (trip) => {
   <h2>${destinations.findById(trip.destinationID).destination}</h2>
   <h2>costs: $55005.00</h2>
   <div class="buttons">
-    <button type="button" class="button" name="book-it">Book it!</button>
+    <button type="button" class="button" id = "book-btn" name="book-it">Book it!</button>
     <button type="button" class="button" name="no-thanks">No thanks</button>
   </div>`
 
   backPage.innerHTML = cardBackHTML;
+  console.log('bookbtn inDOM', bookBtn)
 }
 // const showForm = () => {
 //   console.log('clicked')
