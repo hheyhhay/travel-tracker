@@ -2,10 +2,11 @@ var dayjs = require('dayjs');
 
 import {
   invokeFetch,
-  currentTraveler,
-  userTrips,
+  // currentTraveler,
+  // userTrips,
   destinations,
   trips,
+  traveler,
   destinationData,
   tripData,
   newTrip
@@ -16,6 +17,12 @@ import Trip from './Trip';
 import {
   postTrip
 } from './apiCalls';
+
+export let currentTraveler;
+export let userID;
+export let userTrips;
+export let userDestinations;
+
 
 export const renderPage = () => {
   console.log('connected to Dom')
@@ -40,7 +47,67 @@ export const tripTravelers = document.getElementById("travelers")
 export const dropdown = document.getElementById("dropdown")
 export const backPage = document.getElementById("form-back")
 export const bookBtn = document.getElementById("book-btn")
+const loginContainer = document.getElementById("login-container")
+const loginBtn = document.getElementById("login-btn")
+const username = document.getElementById("username")
+const password = document.getElementById("password")
+const errorMessage = document.getElementById("error-msg")
+const navBar = document.getElementById('greeting')
 
+
+const login = (event) => {
+  event.preventDefault();
+  event.stopImmediatePropagation();
+  console.log(username.value)
+  console.log(password.value)
+  validateUser(username.value, password.value)
+
+}
+
+const validateUser = (loginName, password) => {
+  const usernameArray = loginName.split('traveler')
+  console.log(traveler.findUser(Number(usernameArray[1])))
+  console.log(usernameArray)
+  userID = Number(usernameArray[1])
+  currentTraveler = traveler.findUser(userID)
+  userTrips = trips.findTrips(userID)
+  userDestinations = destinations.findByTrips(userTrips)
+  renderPage()
+
+  if (!traveler.findUser(Number(usernameArray[1]))){
+    console.log("NOT VALID")
+    displayLoginError()
+    return
+  } else {
+    validatePassword(password)
+    console.log("VALID")
+  }
+}
+
+const validatePassword = (password) => {
+  if (password === "travel") {
+    validCred()
+    console.log("valid password")
+  } else {
+    displayLoginError()
+    console.log("invalid")
+  }
+}
+
+const displayLoginError = () => {
+  errorMessage.innerHTML = "<p>Opps, invalid username or password. <b>Please try again!</b> </p>"
+}
+
+const validCred = () => {
+  loginContainer.classList.add("hidden");
+  navBar.classList.remove("hidden");
+  mainPage.classList.remove("hidden")
+console.log(userID)
+  // currentTraveler = traveler.findUser(userID);
+
+
+
+}
 
 const renderUser = () => {
   let greetingHTML = `Hello, ${currentTraveler.name}`
@@ -128,6 +195,6 @@ export const showCards = () => {
   mainPage.classList.remove("hidden")
 }
 
-
+loginBtn.addEventListener('click', () => login(event))
 bookAnotherTripBtn.addEventListener('click', showForm)
 totalCost.addEventListener('click', totalSpent)

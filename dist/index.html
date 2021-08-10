@@ -13,13 +13,14 @@
 </head>
 
 <body>
-  <div class = "login-container">
+  <div class = "login-container" id = "login-container">
   <form class = "form-page log-in">
     <div class="imgcontainer">
       <img class="login-image" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" alt="ornate buildings with a garden during the day" >
     </div>
-
-    <div class="container">
+    <div class="error-msg" id = "error-msg">
+    </div>
+    <!-- <div class="container"> -->
       <label for="uname"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" id = "username" class ="input" required>
 
@@ -28,7 +29,7 @@
 
       <button type="button" value = "submit" class = "button" id = "login-btn">Login</button>
 
-    </div>
+    <!-- </div> -->
 
   </form>
 </div>

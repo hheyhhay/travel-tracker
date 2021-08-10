@@ -6,20 +6,39 @@ import './css/base.scss';
 import Traveler from './Traveler';
 import Trip from './Trip';
 import Destination from './Destination';
-import {renderPage, dropdown, tripTravelers, tripDuration, calenderDate, submitTrip, backPage, bookBtn, formContainer, renderCards, renderCardBack, showCards} from './domUpdates';
 import {
-  allData, postTrip
+  renderPage,
+  dropdown,
+  tripTravelers,
+  tripDuration,
+  calenderDate,
+  submitTrip,
+  backPage,
+  bookBtn,
+  formContainer,
+  renderCards,
+  renderCardBack,
+  showCards,
+  currentTraveler,
+  userTrips,
+  userDestinations,
+  userID
+} from './domUpdates';
+import {
+  allData,
+  postTrip
 } from './apiCalls';
 
 // Gloabal Varibles
 export let destinationData; // may not need to  be global
 export let tripData; // may not need to  be global
 export let travelerData; // may not need to  be global
-export let currentTraveler;
+// export let currentTraveler;
 export let trips;
 export let destinations;
-export let userTrips;
-export let userDestinations;
+// export let userTrips;
+// export let userDestinations;
+export let traveler;
 let newTrip;
 
 export const invokeFetch = () => {
@@ -35,18 +54,17 @@ const parseValues = (data) => {
   travelerData = data[2].travelers;
 
   instantiation()
-  renderPage()
+  // renderPage()
 }
 
 const instantiation = () => {
-  let i = Math.floor(Math.random() * 50);
-  let traveler = new Traveler(travelerData)
-  currentTraveler = traveler.findUser(i);
+  // let i = Math.floor(Math.random() * 50);
+  traveler = new Traveler(travelerData)
   trips = new Trip(tripData);
   destinations = new Destination(destinationData)
 
-  userTrips = trips.findTrips(i)
-  userDestinations = destinations.findByTrips(userTrips)
+  // userTrips = trips.findTrips(i)
+  // userDestinations = destinations.findByTrips(userTrips)
 }
 
 
@@ -54,9 +72,9 @@ const bookTrip = (event) => {
   event.preventDefault();
   event.stopImmediatePropagation();
 
- newTrip = {
+  newTrip = {
     id: 1 + tripData.length++,
-    userID:currentTraveler.id,
+    userID: currentTraveler.id,
     destinationID: destinations.findId(dropdown.value),
     travelers: tripTravelers.value,
     date: dayjs(calenderDate.value).format('YYYY/MM/DD'),
@@ -71,9 +89,7 @@ const bookTrip = (event) => {
 
 const publishTrip = (event) => {
   event.preventDefault()
-  console.log(event)
-  console.log('click PublishTrip')
-  console.log(newTrip)
+
   validatePost(newTrip)
   showCards();
 }
@@ -86,7 +102,7 @@ const validatePost = (obj) => {
     .then(response => response.json())
     .then(data => {
       trips = new Trip(data.trips)
-      userTrips = trips.findTrips(currentTraveler.id)
+      let userTrips = trips.findTrips(currentTraveler.id)
       renderCards(userTrips)
       return trips;
     })
