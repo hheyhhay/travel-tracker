@@ -137,4 +137,22 @@ describe.only('Destination', () => {
 
     expect(destination.findTotalSpent(trip.tripsThisYear)).to.deep.equal(1952.50)
   })
+
+  it('should be able to find cost of single trip', () => {
+    const singleTrip = {
+        "id": 16,
+        "userID": 19,
+        "destinationID": 27,
+        "travelers": 1,
+        "date": "2021/08/02",
+        "duration": 9,
+        "status": "approved",
+        "suggestedActivities": []
+    }
+    destination.findByTrips(trip.userTrips)
+    // console.log(destination)
+    // console.log(userDestinations)
+    console.log(destination.findTotalSpent([singleTrip]))
+    expect(destination.findTotalSpent([singleTrip]).to.equal(1952.50))
+  })
 })

@@ -21,15 +21,13 @@ class Destination {
     return id;
   }
 
-  getLocationById(id) {
-    const location = 0
-  }
+
 
   // findPriceByTrip(trip){
   //   const totalByTraveler = trip.travelers *
   // }
   findTotalSpent(trips) {
-
+    console.log('HERE?!')
     const total = trips.reduce((sum, trip) => {
       let lodgingSum = 0;
       let flightSum = 0;
@@ -47,6 +45,10 @@ class Destination {
     const agentFee = total + total * .1;
     return agentFee;
   }
+
+  // findSingleTripCost(trip) {
+  //
+  // }
 };
 
 module.exports = Destination;
