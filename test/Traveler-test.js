@@ -5,8 +5,8 @@ const Traveler = require('../src/Traveler')
 describe('Traveler', function() {
   let travelers;
   let traveler;
-  beforeEach(() => {
 
+  beforeEach(() => {
     travelers = [{
       "id": 1,
       "name": "Ham Leadbeater",

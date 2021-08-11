@@ -1,6 +1,4 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-@import 'variables'; // @use is maybe a better thing to use, but this is currently working
-
+@import 'variables';
 
 * {
   margin: 0;
@@ -12,15 +10,9 @@ body {
   align-items: center;
   background-color: $cream;
   font-family: $body-font;
-  // overflow: scroll;
 }
-
-li {
-  list-style-type: none;
-}
-
 /* Login Page */
-.login-container{
+.login-container {
   display: flex;
   align-items: center;
   width: 100%;
@@ -51,7 +43,7 @@ li {
   .label {
     display: flex;
     flex-direction: column;
-    margin: 5% 0 5% 0;
+    margin: 5% 0;
   }
 
   .login {
@@ -81,7 +73,6 @@ li {
   &:hover {
     background: $musturd;
   }
-
 }
 /*Trips text */
 .trip {
@@ -90,7 +81,6 @@ li {
   margin: $margin-alignment;
   font-family: $header-font;
 }
-
 /* trip cards */
 .parent {
   display: flex;
@@ -104,7 +94,6 @@ li {
   grid-row-gap: $grid-gap;
   margin-top: 0;
 }
-
 
 .trip-info {
   display: flex;
@@ -124,6 +113,7 @@ li {
   grid-area: image;
   width: 100%;
 }
+
 .text-info {
   grid-area: text;
   display: flex;
@@ -141,95 +131,56 @@ li {
     padding-bottom: 5%;
     padding-top: 5%;
   }
-
 }
 
 .button-div {
   display: flex;
   justify-content: space-between;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding: 5% 0;
   height: 5%;
 }
-
 //Form page
 .all-forms {
   height: 500px;
   width: 100%;
   padding-top: 20%;
-}
-// .form-container {
-//
-// }
 
-.form-page {
+  .book-trip {
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: $form-background;
-    box-shadow: $box-shadow;
-    text-align: center;
-    border: $form-border;
-    width: 60%;
-    margin: auto;
-
-    .book-trip {
-      display: flex;
-      justify-content: space-around;
-      flex-direction: column;
-      height: 100%;
-    }
-
-    .form-input {
-      display: flex;
-      align-items: center;
-    }
-
-    .input {
-      display: block;
-      margin: 0 auto;
-      font-size: $font-size;
-      line-height: $font-size *2;
-      border: none;
-      border-bottom: 5px solid rgba(0,0,0,1);
-      padding-left: 5px;
-      outline: none;
-      color: rgba(0,0,0,1);
-
-      &:hover {
-        border-bottom: 5px solid $musturd;
-      }
-
-      .destinations {
-        font-size: $font-size;
-      }
-
-    }
-
-    h2 {
-      font-family: $header-font;
-    }
-
-    .back {
-      margin: 0;
-      border-radius: 2px solid blue;
-    }
-
-    // .buttons {
-    //   display: flex;
-    //   flex-direction: row;
-    //   // border: 2px solid pink;
-    //   // width: 100%;
-    //   // margin-bottom: 10%;
-    //   // padding: 0;
-    // }
+    height: 100%;
   }
 
-  // button {
-  // border: $button-border;
-  //
-  // }
+  .form-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .input {
+    display: block;
+    margin: 0 auto;
+    font-size: $font-size;
+    line-height: $font-size *2;
+    border: none;
+    border-bottom: 5px solid rgba(0,0,0,1);
+    padding-left: 5px;
+    outline: none;
+    color: rgba(0,0,0,1);
+
+    &:hover {
+      border-bottom: 5px solid $musturd;
+    }
+
+    .destinations {
+      font-size: $font-size;
+    }
+  }
+  
+  h2 {
+    font-family: $header-font;
+  }
+}
 
 .hidden {
   display: none;
