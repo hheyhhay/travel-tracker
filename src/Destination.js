@@ -24,7 +24,7 @@ class Destination {
       let lodgingSum = 0;
       let flightSum = 0;
       sum += lodgingSum + flightSum;
-      this.userDestinations.forEach(destination => {
+      this.destinations.forEach(destination => {
         if (destination["id"] === trip["destinationID"]) {
           lodgingSum = destination["estimatedLodgingCostPerDay"] * trip["duration"];
           flightSum = destination["estimatedFlightCostPerPerson"] * trip["travelers"];
