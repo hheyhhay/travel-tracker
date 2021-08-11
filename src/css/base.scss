@@ -11,7 +11,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: $cream;
-  font-family: 'Comfortaa', cursive;
+  font-family: $body-font;
   // overflow: scroll;
 }
 
@@ -23,59 +23,74 @@ li {
 .login-container{
   display: flex;
   align-items: center;
-  border: 2px solid green;
   width: 100%;
-  height: 600px;
+  height: 100%;
+  padding-top: 30%;
 }
+
 .log-in {
   display: flex;
-  align-items: column;
-  justify-content: center;
-  background-color: white;
-  height: 60%;
-  width: 60%;
-
-  padding: auto;
-  border: 2px solid black;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $form-background;
+  box-shadow: $box-shadow;
+  text-align: center;
+  margin-left: 15%;
+  width: 70%;
+  height: 80%;
+  border: $form-border;
+  padding-bottom: 10%;
 
   .login-image {
-    width: 40%;
+    width: 50%;
     border-radius: 50%;
-    border: 2px solid green;
-    margin: 0;
-    padding: 0;
+    margin-top: 10%;
+  }
+
+  .label {
+    display: flex;
+    flex-direction: column;
+    margin: 5% 0 5% 0;
+  }
+
+  .login {
+    margin-top: 5%;
   }
 }
 /* Nav-bar */
 .nav-bar {
-  background-color: $musterd;
-  height: 10%;
+  background-color: $musturd;
+  height: 20%;
   width: 100%;
-  font-family: 'Limelight', cursive;
+  font-family: $header-font;
   color: black;
   font-size: 30px;
+  margin: $margin-alignment;
 }
+
 .button {
   display: block;
   margin: 0 auto;
   line-height: $font-size *2;
   padding: 0 20px;
   border: 1px solid rgba(0,0,0,1);
-  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px rgba(0,0,0,1);
-  font-family: 'Limelight', cursive;
+  box-shadow: $button-shadow;
+  font-family: $header-font;
 
   &:hover {
-    background: $musterd;
+    background: $musturd;
   }
-  // margin: 5%;
+
 }
 /*Trips text */
 .trip {
   display: flex;
   height: 10%;
-  padding-bottom: 0;
-  font-family: 'Limelight', cursive;
+  margin: $margin-alignment;
+  font-family: $header-font;
 }
+
 /* trip cards */
 .parent {
   display: flex;
@@ -85,8 +100,8 @@ li {
   height: 50%;
   grid-template-columns: repeat(2, 40%);
   grid-template-rows: repeat(4, 90%);
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
+  grid-column-gap: $grid-gap;
+  grid-row-gap: $grid-gap;
   margin-top: 0;
 }
 
@@ -99,9 +114,9 @@ li {
   grid-template-rows: 210px 210px;
   grid-template-areas: "image-info" "text-info";
   background-color: white;
-  box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0,0,0,1);
+  box-shadow: $box-shadow;
   text-align: center;
-  border: 2px solid black;
+  border: $form-border;
   margin-bottom: 15px;
 }
 
@@ -109,50 +124,55 @@ li {
   grid-area: image;
   width: 100%;
 }
-
-a {
-  font-size: 20px;
-  padding: 0;
-  margin: 0;
-}
-
 .text-info {
   grid-area: text;
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
+
+  a {
+    font-size: 15px;
+    padding: 0;
+  }
+
+  .small-text {
+    font-size: $font-size;
+    padding-bottom: 5%;
+    padding-top: 5%;
+  }
+
 }
 
 .button-div {
   display: flex;
-
+  justify-content: space-between;
   padding-top: 5%;
   padding-bottom: 5%;
   height: 5%;
 }
 
-
-
 //Form page
-.form-container {
+.all-forms {
   height: 500px;
   width: 100%;
+  padding-top: 20%;
 }
+// .form-container {
+//
+// }
 
-  .form-page {
+.form-page {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: white;
-    // height: 100%;
-    // width: 50%;
-    // margin: 5% auto 5% auto;
-    box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0,0,0,1);
+    background-color: $form-background;
+    box-shadow: $box-shadow;
     text-align: center;
-    border: 2px solid black;
-
+    border: $form-border;
+    width: 60%;
+    margin: auto;
 
     .book-trip {
       display: flex;
@@ -173,13 +193,12 @@ a {
       line-height: $font-size *2;
       border: none;
       border-bottom: 5px solid rgba(0,0,0,1);
-      min-width: 250px;
       padding-left: 5px;
       outline: none;
       color: rgba(0,0,0,1);
 
       &:hover {
-        border-bottom: 5px solid $musterd;
+        border-bottom: 5px solid $musturd;
       }
 
       .destinations {
@@ -189,31 +208,28 @@ a {
     }
 
     h2 {
-      font-family: 'Limelight', cursive;
+      font-family: $header-font;
     }
 
     .back {
-      display: flex;
-      align-items: stretch;
-      flex-direction: flex-start;
       margin: 0;
-      padding: 0;
+      border-radius: 2px solid blue;
     }
 
-    .buttons {
-      display: flex;
-      flex-direction: row;
-      border: 2px solid pink;
-      width: 100%;
-      margin-bottom: 10%;
-      padding: 0;
-    }
+    // .buttons {
+    //   display: flex;
+    //   flex-direction: row;
+    //   // border: 2px solid pink;
+    //   // width: 100%;
+    //   // margin-bottom: 10%;
+    //   // padding: 0;
+    // }
   }
 
-  button {
-  border: 1px solid rgba(0,0,0,1);
-
-  }
+  // button {
+  // border: $button-border;
+  //
+  // }
 
 .hidden {
   display: none;

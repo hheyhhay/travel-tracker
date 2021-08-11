@@ -6,7 +6,7 @@ import {
   trips,
   traveler,
   destinationData,
-  tripData,
+  // tripData,
   newTrip
 } from './scripts'
 
@@ -113,12 +113,10 @@ export const renderCards = (userTripsArray) => {
     return `<section class="trip-info" >
         <img class = "image" src = "${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
         <div class="text-info">
-          <span class="status"> ${trip.status}</span>
-          <a>Your ${trips.findTenseOfTrip(trip)} trip to  ${destinations.findById(trip.destinationID).destination}</a>
-          <ul>
-            <li>on ${dayjs(trip.date).format("MM/DD/YYYY")} </li>
-            <li>for ${trip.travelers} travelers </li>
-          </ul>
+          <span class="status small-text"> ${trip.status}</span>
+          <a>Your ${trips.findTenseOfTrip(trip)} trip to ${destinations.findById(trip.destinationID).destination}</a>
+            <a class = "small-text">on ${dayjs(trip.date).format("MM/DD/YYYY")} </a>
+            <a class = "small-text">for ${trip.travelers} travelers </a>
         </div>
       </section>`
   })
@@ -146,7 +144,7 @@ export const renderCardBack = (trip) => { // invoked in scripts
   let cardBackHTML = `<img class="image" src="${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
   <h2>A trip to ${destinations.findById(trip.destinationID).destination}</h2>
   <h2>will cost $${destinations.findTotalSpent([trip])}</h2>
-  <div class="buttons">
+  <div class="button-div">
     <button type="button" class="button book-it" id = "book-btn" name="book-it">Book it!</button>
     <button type="button" class="button no-thanks" name="no-thanks">No thanks</button>
   </div>`
