@@ -6,6 +6,8 @@ import Traveler from './Traveler';
 import Trip from './Trip';
 import Destination from './Destination';
 import {
+  showFetchErrorMessage,
+  showPostErrorMessage,
   dropdown,
   tripTravelers,
   tripDuration,
@@ -30,38 +32,40 @@ export let destinationData;
 export let trips;
 export let destinations;
 export let traveler;
-
-let tripData;
-let newTrip;
+export let travelerData;
+export let tripData;
+export let newTrip;
 
 //Functions
 const invokeFetch = () => {
   allData
     .then(response => parseValues(response))
-    .catch(err => console.log(err)) // ADD DOM ERROR!
+    .catch(err => showFetchErrorMessage()) // ADD DOM ERROR!
 }
 
 const parseValues = (data) => {
 
   destinationData = data[0].destinations;
   tripData = data[1].trips;
-  const travelerData = data[2].travelers;
+  travelerData = data[2].travelers;
 
   instantiation(destinationData, tripData, travelerData)
 }
 
-const instantiation = (destinationInfo, tripInfo, travelerInfo) => {
+export const instantiation = (destinationInfo, tripInfo, travelerInfo) => {
   traveler = new Traveler(travelerInfo)
   trips = new Trip(tripInfo);
   destinations = new Destination(destinationInfo)
 }
+
+
 
 const bookTrip = (event) => {
   event.preventDefault();
   event.stopImmediatePropagation();
 
   newTrip = {
-    id: 1 + tripData.length++,
+    id: Date.now(),
     userID: currentTraveler.id,
     destinationID: destinations.findId(dropdown.value),
     travelers: Number(tripTravelers.value),
@@ -70,25 +74,19 @@ const bookTrip = (event) => {
     status: 'pending',
     suggestedActivities: []
   }
-  console.log(tripData.length)
-  console.log('newTrip in bookTrp', newTrip)
+
   renderCardBack(newTrip)
   event.target.reset()
 }
 
 const publishTrip = (event) => {
   event.preventDefault()
-  console.log(event.target)
-  if (event.target.className === "button book-it") {
-    console.log('book-it')
-    console.log(newTrip)
-    validatePost(newTrip)
-    // showCards();
 
-  } else if (event.target.className === "button no-thanks") {
-    console.log('no-thanks')
+  if (event.target.className === "button button-back book") {
+    validatePost(newTrip)
+
+  } else if (event.target.className === "button button-back no-thanks") {
     let userTrips = trips.findTrips(currentTraveler.id)
-    console.log('userTrips in nothnx', userTrips)
     renderCards(userTrips)
     showCards()
   }
@@ -103,14 +101,12 @@ const validatePost = (obj) => {
     .then(data => {
       trips = new Trip(data.trips)
       let userTrips = trips.findTrips(currentTraveler.id)
-      console.log('AMI HERE!?!')
-      console.log('userTrips in book after reinstants', userTrips)
       let userDestinations = destinations.findByTrips(userTrips)
       renderCards(userTrips)
       showCards();
       return trips
     })
-    .catch(err => console.log(err))
+    .catch(err => showPostErrorMessage())
   return
 }
 

@@ -1,10 +1,13 @@
 var dayjs = require('dayjs');
 
 import {
+  instantiation,
   destinations,
   trips,
   traveler,
   destinationData,
+  tripData,
+  travelerData
 } from './scripts'
 
 
@@ -36,6 +39,15 @@ const username = document.getElementById("username")
 const password = document.getElementById("password")
 const errorMessage = document.getElementById("error-msg")
 const navBar = document.getElementById('greeting')
+
+//Error Message functions
+export const showFetchErrorMessage = () => {
+  errorMessage.innerHTML = `<p>Oh no! We are having a hard time reaching our servers <b>Please try again!</b></p>`
+}
+
+export const showPostErrorMessage = () => {
+  navBar.innerHTML = "Oh no! We couldn't save your trip, please try again"
+}
 
 /// LOGIN Functions
 const login = (event) => {
@@ -70,6 +82,7 @@ const displayLoginError = () => {
 }
 
 const validCred = (id) => {
+  instantiation(destinationData, tripData, travelerData)
   currentTraveler = traveler.findUser(id)
   userTrips = trips.findTrips(id)
   userDestinations = destinations.findByTrips(userTrips)
@@ -129,9 +142,9 @@ export const renderCardBack = (trip) => { // invoked in scripts
   let cardBackHTML = `<img class="image" src="${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
   <h2>A trip to ${destinations.findById(trip.destinationID).destination}</h2>
   <h2>will cost $${destinations.findTotalSpent([trip])}</h2>
-  <div class="button-div">
-    <button type="button" class="button book-it" id = "book-btn" name="book-it">Book it!</button>
-    <button type="button" class="button no-thanks" name="no-thanks">No thanks</button>
+  <div class="button-back">
+    <button type="button" class="button button-back book" id = "book-btn" name="book-it">Book it!</button>
+    <button type="button" class="button button-back no-thanks" name="no-thanks">No thanks</button>
   </div>`
 
   backPage.innerHTML = cardBackHTML;

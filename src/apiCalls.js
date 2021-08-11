@@ -25,7 +25,5 @@ export const postTrip = (tripObj) => {
       'Content-Type': 'application/json',
     },
   }).then(response => response.json())
-  .catch(err => console.log(err))
+  .catch(err => console.log('error inside of API', err))
 }
-
-//make sure there is an error handling on on the post somewhere?
