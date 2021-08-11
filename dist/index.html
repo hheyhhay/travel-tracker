@@ -1,90 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Limelight&display=swap" rel="stylesheet">
-  <title>🌈Travel Tracker</title>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="node_modules/@glidejs/glide/dist/css/glide.core.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Limelight&display=swap" rel="stylesheet">
+    <title>🌈Travel Tracker</title>
+  </head>
 
-<body>
-  <div class = "login-container" id = "login-container">
-  <form class = "log-in">
-    <div class="imgcontainer">
-      <img class="login-image" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" alt="ornate buildings with a garden during the day" >
-    </div>
-    <div class="error-msg" id = "error-msg">
-    </div>
-    <!-- <div class="container"> -->
-      <label for="uname" class = "label"><b>Username</b></label>
-      <input type="text" placeholder="Enter Username" name="uname" id = "username" class ="input" required>
-
-      <label for="psw" class = "label"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" id = "password" class ="input" required>
-
-      <button type="button" value = "submit" class = "button login" id = "login-btn">Login</button>
-
-    <!-- </div> -->
-
-  </form>
-</div>
-
-  <div class="nav-bar hidden" id="greeting">
-    <h1></h1>
-  </div>
-  <div class="main-page hidden" id="main-page">
-    <div class="trip">
-      <h2 class="trip-text">Your trips</h2>
-    </div>
-    <section class="parent" id="card-container">
-      <!-- this will be populated by the amount of cards -->
-    </section>
-    <div class="button-div">
-      <button type="button" class="button" id="book-another-trip" name="button">Book another Trip</button>
-      <button type="button" name="button" class="button" id="total-amount">How much you've spent</button>
-    </div>
-  </div>
-<div class = "all-forms">
-  <div class="form-container hidden" id="form-container">
-    <div class="log-in hidden" id="form-page">
-      <h2>On to the next trip...</h2>
-      <form class="book-trip" id="book-trip">
-        <label for="date" class = "label">Start date:</label>
-        <!-- for date -> put min date as today -->
-        <input type="date" name="date" id="date" class="input" required>
-        <!-- <div class="form-input"> -->
-        <label for="duration" class = "label"> How many days: </label>
-        <input type="number" name="duration" id="duration" class="input" s min="0">
-
-        <label for="travelers" class = "label"> How many travelers: </label>
-        <input type="number" class="input" name="travelers" id="travelers" min="0">
-        <div>
-          <label for="destinations" class = "label">Choose a destination:</label>
-          <select class="destinations input" name="destinations" id="dropdown" required>
-            <option value="" class="input"></option>
-          </select>
+  <body>
+    <div class="login-container" id="login-container">
+      <form class="log-in input">
+        <div class="imgcontainer">
+          <img class="login-image" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" alt="ornate buildings with a garden during the day">
         </div>
-        <input type="submit" class="button input" value="check pricings">
+        <div class="error-msg" id="error-msg"></div>
+        <label for="uname" class="label"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" id="username" class="input" required>
+        <label for="psw" class="label"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" id="password" class="input" required>
+        <button type="button" value="submit" class="button login" id="login-btn">Login</button>
       </form>
-
-
     </div>
-  </div>
-  <div class="form-page hidden" id="form-back">
-    <!-- <img class="image" src="https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="overview of city buildings with a clear sky">
-    <h2>Your trip to Denver, CO</h2>
-    <h2>costs: $55005.00</h2>
-    <div class = "button-div">
-      <button type="button" class="button" id="book-btn" name="book-it">Book it!</button>
-      <button type="button" class="button" id = "no-thanks-btn" name="no-thanks" >No thanks</button>
-    </div> -->
-  </div>
-  </div>
-  <script src="bundle.js"></script>
-</body>
+    <div class="nav-bar hidden" id="greeting">
+      <h1></h1>
+    </div>
+    <div class="main-page hidden" id="main-page">
+      <div class="trip">
+        <h2 class="trip-text">Your trips</h2>
+      </div>
+      <section class="parent" id="card-container">
+        <!-- this will be populated by the amount of cards -->
+      </section>
+      <div class="button-div">
+        <button type="button" class="button" id="book-another-trip" name="button">Book another Trip</button>
+        <button type="button" name="button" class="button" id="total-amount">How much you've spent</button>
+      </div>
+    </div>
+    <div class="all-forms">
+      <div class="form-container hidden" id="form-container">
+        <div class="log-in hidden" id="form-page">
+          <h2>On to the next trip...</h2>
+          <form class="book-trip" id="book-trip">
+            <label for="date" class="label">Start date:</label>
+            <input type="date" name="date" id="date" class="input" required>
+            <label for="duration" class="label"> How many days: </label>
+            <input type="number" name="duration" id="duration" class="input" s min="1">
+            <label for="travelers" class="label"> How many travelers: </label>
+            <input type="number" class="input" name="travelers" id="travelers" min="1">
+            <div>
+              <label for="destinations" class="label">Choose a destination:</label>
+              <select class="destinations input" name="destinations" id="dropdown" required>
+                <option value="" class="input"></option>
+              </select>
+            </div>
+            <input type="submit" class="button input" value="check pricings">
+          </form>
+        </div>
+      </div>
+      <div class="log-in hidden" id="form-back">
+        <!-- will render in domUpdates -->
+      </div>
+    </div>
+    <script src="bundle.js"></script>
+  </body>
 </html>

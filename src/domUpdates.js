@@ -1,52 +1,41 @@
 var dayjs = require('dayjs');
 
 import {
-  invokeFetch,
   destinations,
   trips,
   traveler,
   destinationData,
-  // tripData,
-  newTrip
 } from './scripts'
 
-import Trip from './Trip';
-
-import {
-  postTrip
-} from './apiCalls';
 
 export let currentTraveler;
-export let userID;
+let userID;
 export let userTrips;
 export let userDestinations;
 
-
-
-
-
-const greeting = document.getElementById("greeting");
-const cardContainer = document.getElementById("card-container")
-const totalCost = document.getElementById("total-amount")
-const newTripForm = document.getElementById("book-trip")
-const bookAnotherTripBtn = document.getElementById("book-another-trip")
-const formCard = document.getElementById("form-page")
-export const formContainer = document.getElementById("form-container")
-const mainPage = document.getElementById("main-page")
 export const submitTrip = document.getElementById("book-trip")
 export const calenderDate = document.getElementById("date")
 export const tripDuration = document.getElementById("duration")
 export const tripTravelers = document.getElementById("travelers")
 export const dropdown = document.getElementById("dropdown")
 export const backPage = document.getElementById("form-back")
-export const bookBtn = document.getElementById("book-btn")
+
+const bookBtn = document.getElementById("book-btn")
+const formContainer = document.getElementById("form-container")
+
+
+const greeting = document.getElementById("greeting");
+const cardContainer = document.getElementById("card-container")
+const totalCost = document.getElementById("total-amount")
+const bookAnotherTripBtn = document.getElementById("book-another-trip")
+const formCard = document.getElementById("form-page")
+const mainPage = document.getElementById("main-page")
 const loginContainer = document.getElementById("login-container")
 const loginBtn = document.getElementById("login-btn")
 const username = document.getElementById("username")
 const password = document.getElementById("password")
 const errorMessage = document.getElementById("error-msg")
 const navBar = document.getElementById('greeting')
-// const noThanksBtn = document.getElementById("no-thanks-btn")
 
 /// LOGIN Functions
 const login = (event) => {
@@ -60,7 +49,7 @@ const validateUser = (loginName, password) => {
   const usernameArray = loginName.split('traveler')
   userID = Number(usernameArray[1])
 
-  if (!traveler.findUser(Number(usernameArray[1]))){
+  if (!traveler.findUser(Number(usernameArray[1]))) {
     displayLoginError()
     return
   } else {
@@ -84,16 +73,14 @@ const validCred = (id) => {
   currentTraveler = traveler.findUser(id)
   userTrips = trips.findTrips(id)
   userDestinations = destinations.findByTrips(userTrips)
-  // trips.findTrips(currentTraveler.id)
-
-
+  calenderDate.setAttribute("min", dayjs().format("YYYY-DD-MM"));
 
   loginContainer.classList.add("hidden");
   navBar.classList.remove("hidden");
-  mainPage.classList.remove("hidden")
+  mainPage.classList.remove("hidden");
+
   renderPage()
 }
-
 
 //Render Page functions
 const renderPage = () => {
@@ -101,6 +88,7 @@ const renderPage = () => {
   renderCards(userTrips)
   renderDropdown()
 }
+
 const renderUser = () => {
   let greetingHTML = `Hello, ${currentTraveler.name}`
   greeting.innerHTML = greetingHTML;
@@ -122,7 +110,7 @@ export const renderCards = (userTripsArray) => {
   })
 
   cardContainer.innerHTML = cardContainerHTML;
-}
+};
 
 const renderDropdown = () => {
 
@@ -137,10 +125,7 @@ const renderDropdown = () => {
 }
 
 export const renderCardBack = (trip) => { // invoked in scripts
-  console.log(trips.userTrips)
-  console.log('desintatons!?', destinations)
-  console.log(trip)
-  console.log(destinations.findTotalSpent([trip]))
+
   let cardBackHTML = `<img class="image" src="${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
   <h2>A trip to ${destinations.findById(trip.destinationID).destination}</h2>
   <h2>will cost $${destinations.findTotalSpent([trip])}</h2>
@@ -156,10 +141,8 @@ export const renderCardBack = (trip) => { // invoked in scripts
 }
 
 // EventListner Function
-const totalSpent = () => { // doublec check this math!
-  /// NEED TO HAVE IT UPDATE WITH NEW CARD BOOKED.. maybe?
+const totalSpent = () => {
 
-  // trips.findTrips(currentTraveler.id)
   let yearTrips = trips.findTripsInYear()
 
   if (!destinations.findTotalSpent(yearTrips)) {
@@ -167,14 +150,9 @@ const totalSpent = () => { // doublec check this math!
   } else {
     totalCost.innerHTML = `Beautiful! You've spent $${destinations.findTotalSpent(yearTrips)} on trips in ${dayjs(trips.today).year()}`
   }
-  // event.reset() // says it doesn't work but it does allow it tor reset... need to explore thsi bug
 }
 
-
-
-
 //Show/Hide functions
-
 const showForm = (event) => {
   formContainer.classList.remove("hidden")
   formCard.classList.remove("hidden");

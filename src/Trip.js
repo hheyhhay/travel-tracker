@@ -11,12 +11,12 @@ class Trip {
     this.pendingTrips;
     this.tripsThisYear;
   }
+
   findTrips(id) {
     this.userTrips = this.tripData.filter((trip) => trip.userID === id)
 
     return this.userTrips;
   }
-
 
   findTenseOfTrip(trip) {
     let start = trip["date"];
@@ -30,35 +30,6 @@ class Trip {
       return "previous"
     }
   }
-
-  //
-  // findCurrentTrip(){
-  //
-  //   const currentTrip = this.userTrips.filter(trip => {
-  //     let start = trip["date"];
-  //     let end = dayjs(trip["date"]).add(trip["duration"], 'day').format('YYYY/MM/DD');
-  //     if (dayjs(this.today).isBefore(end) && dayjs(this.today).isAfter(start)) {
-  //       return trip;
-  //     }
-  //   })
-  //
-  //   return this.currentTrip = currentTrip;
-  // }
-  //
-  // findPastTrips(){
-  //   this.pastTrips = this.userTrips.filter(trip => dayjs(this.today).isAfter(trip["date"])).filter(trip => !this.currentTrip.includes(trip))
-  //   return this.pastTrips;
-  // }
-  //
-  // findFutureTrips(){
-  //   this.futureTrips = this.userTrips.filter(trip => dayjs(this.today).isBefore(trip["date"])).filter(trip => !this.currentTrip.includes(trip))
-  //   return this.futureTrips;
-  // }
-  //
-  // findPendingTrips(){
-  //   this.pendingTrips =this.userTrips.filter(trip => trip["status"] === "pending");
-  //   return this.pendingTrips;
-  // }
 
   findTripsInYear() {
     let startOfYear = dayjs(this.today).startOf('year').format('YYYY/MM/DD')
