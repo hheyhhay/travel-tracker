@@ -80,6 +80,7 @@ const bookTrip = (event) => {
     status: 'pending',
     suggestedActivities: []
   }
+  console.log(tripData.length)
   console.log('newTrip in bookTrp', newTrip)
   renderCardBack(newTrip)
   event.target.reset()

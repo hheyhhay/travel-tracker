@@ -14,20 +14,20 @@
 
 <body>
   <div class = "login-container" id = "login-container">
-  <form class = "form-page log-in">
+  <form class = "log-in">
     <div class="imgcontainer">
       <img class="login-image" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" alt="ornate buildings with a garden during the day" >
     </div>
     <div class="error-msg" id = "error-msg">
     </div>
     <!-- <div class="container"> -->
-      <label for="uname"><b>Username</b></label>
+      <label for="uname" class = "label"><b>Username</b></label>
       <input type="text" placeholder="Enter Username" name="uname" id = "username" class ="input" required>
 
-      <label for="psw"><b>Password</b></label>
+      <label for="psw" class = "label"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" id = "password" class ="input" required>
 
-      <button type="button" value = "submit" class = "button" id = "login-btn">Login</button>
+      <button type="button" value = "submit" class = "button login" id = "login-btn">Login</button>
 
     <!-- </div> -->
 
@@ -49,42 +49,42 @@
       <button type="button" name="button" class="button" id="total-amount">How much you've spent</button>
     </div>
   </div>
-
+<div class = "all-forms">
   <div class="form-container hidden" id="form-container">
-    <div class="form-page hidden" id="form-page">
+    <div class="log-in hidden" id="form-page">
       <h2>On to the next trip...</h2>
       <form class="book-trip" id="book-trip">
-        <label for="date">Start date:</label>
+        <label for="date" class = "label">Start date:</label>
         <!-- for date -> put min date as today -->
         <input type="date" name="date" id="date" class="input" required>
         <!-- <div class="form-input"> -->
-        <label for="duration"> How many days: </label>
+        <label for="duration" class = "label"> How many days: </label>
         <input type="number" name="duration" id="duration" class="input" s min="0">
 
-        <label for="travelers"> How many travelers: </label>
+        <label for="travelers" class = "label"> How many travelers: </label>
         <input type="number" class="input" name="travelers" id="travelers" min="0">
         <div>
-          <label for="destinations">Choose a destination:</label>
+          <label for="destinations" class = "label">Choose a destination:</label>
           <select class="destinations input" name="destinations" id="dropdown" required>
             <option value="" class="input"></option>
           </select>
         </div>
-        <input type="submit" class="button" value="check pricings">
+        <input type="submit" class="button input" value="check pricings">
       </form>
 
 
     </div>
   </div>
-  <div class="form-page back hidden" id="form-back">
-    <img class="image" src="https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="overview of city buildings with a clear sky">
+  <div class="form-page hidden" id="form-back">
+    <!-- <img class="image" src="https://images.unsplash.com/photo-1489171084589-9b5031ebcf9b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2089&q=80" alt="overview of city buildings with a clear sky">
     <h2>Your trip to Denver, CO</h2>
     <h2>costs: $55005.00</h2>
-    <div class="buttons">
+    <div class = "button-div">
       <button type="button" class="button" id="book-btn" name="book-it">Book it!</button>
       <button type="button" class="button" id = "no-thanks-btn" name="no-thanks" >No thanks</button>
-    </div>
+    </div> -->
   </div>
-  <!-- </div> -->
+  </div>
   <script src="bundle.js"></script>
 </body>
 </html>
