@@ -12,11 +12,39 @@ body {
   align-items: center;
   background-color: $cream;
   font-family: 'Comfortaa', cursive;
-  overflow: scroll;
+  // overflow: scroll;
 }
 
 li {
   list-style-type: none;
+}
+
+/* Login Page */
+.login-container{
+  display: flex;
+  align-items: center;
+  border: 2px solid green;
+  width: 100%;
+  height: 600px;
+}
+.log-in {
+  display: flex;
+  align-items: column;
+  justify-content: center;
+  background-color: white;
+  height: 60%;
+  width: 60%;
+
+  padding: auto;
+  border: 2px solid black;
+
+  .login-image {
+    width: 40%;
+    border-radius: 50%;
+    border: 2px solid green;
+    margin: 0;
+    padding: 0;
+  }
 }
 /* Nav-bar */
 .nav-bar {
@@ -26,6 +54,20 @@ li {
   font-family: 'Limelight', cursive;
   color: black;
   font-size: 30px;
+}
+.button {
+  display: block;
+  margin: 0 auto;
+  line-height: $font-size *2;
+  padding: 0 20px;
+  border: 1px solid rgba(0,0,0,1);
+  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px rgba(0,0,0,1);
+  font-family: 'Limelight', cursive;
+
+  &:hover {
+    background: $musterd;
+  }
+  // margin: 5%;
 }
 /*Trips text */
 .trip {
@@ -90,20 +132,7 @@ a {
   height: 5%;
 }
 
-.button {
-  display: block;
-  margin: 0 auto;
-  line-height: $font-size *2;
-  padding: 0 20px;
-  border: 1px solid rgba(0,0,0,1);
-  box-shadow: 3px 3px 1px #95a4ff, 3px 3px 1px 1px rgba(0,0,0,1);
-  font-family: 'Limelight', cursive;
 
-  &:hover {
-    background: $musterd;
-  }
-  // margin: 5%;
-}
 
 //Form page
 .form-container {
@@ -117,9 +146,9 @@ a {
     justify-content: space-between;
     align-items: center;
     background-color: white;
-    height: 100%;
-    width: 50%;
-    margin: 5% auto 5% auto;
+    // height: 100%;
+    // width: 50%;
+    // margin: 5% auto 5% auto;
     box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px rgba(0,0,0,1);
     text-align: center;
     border: 2px solid black;

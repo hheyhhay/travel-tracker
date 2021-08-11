@@ -13,10 +13,31 @@
 </head>
 
 <body>
-  <div class="nav-bar" id="greeting">
+  <div class = "login-container" id = "login-container">
+  <form class = "form-page log-in">
+    <div class="imgcontainer">
+      <img class="login-image" src="https://images.unsplash.com/photo-1563492065599-3520f775eeed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1567&q=80" alt="ornate buildings with a garden during the day" >
+    </div>
+    <div class="error-msg" id = "error-msg">
+    </div>
+    <!-- <div class="container"> -->
+      <label for="uname"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="uname" id = "username" class ="input" required>
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" id = "password" class ="input" required>
+
+      <button type="button" value = "submit" class = "button" id = "login-btn">Login</button>
+
+    <!-- </div> -->
+
+  </form>
+</div>
+
+  <div class="nav-bar hidden" id="greeting">
     <h1></h1>
   </div>
-  <div class="main-page" id="main-page">
+  <div class="main-page hidden" id="main-page">
     <div class="trip">
       <h2 class="trip-text">Your trips</h2>
     </div>
@@ -60,10 +81,10 @@
     <h2>costs: $55005.00</h2>
     <div class="buttons">
       <button type="button" class="button" id="book-btn" name="book-it">Book it!</button>
-      <button type="button" class="button" name="no-thanks">No thanks</button>
+      <button type="button" class="button" id = "no-thanks-btn" name="no-thanks" >No thanks</button>
     </div>
   </div>
-  </div>
+  <!-- </div> -->
   <script src="bundle.js"></script>
 </body>
 </html>

@@ -2,10 +2,9 @@ var dayjs = require('dayjs');
 
 import {
   invokeFetch,
-  currentTraveler,
-  userTrips,
   destinations,
   trips,
+  traveler,
   destinationData,
   tripData,
   newTrip
@@ -17,12 +16,13 @@ import {
   postTrip
 } from './apiCalls';
 
-export const renderPage = () => {
-  console.log('connected to Dom')
-  renderUser()
-  renderCards(userTrips)
-  renderDropdown()
-}
+export let currentTraveler;
+export let userID;
+export let userTrips;
+export let userDestinations;
+
+
+
 
 
 const greeting = document.getElementById("greeting");
@@ -40,8 +40,67 @@ export const tripTravelers = document.getElementById("travelers")
 export const dropdown = document.getElementById("dropdown")
 export const backPage = document.getElementById("form-back")
 export const bookBtn = document.getElementById("book-btn")
+const loginContainer = document.getElementById("login-container")
+const loginBtn = document.getElementById("login-btn")
+const username = document.getElementById("username")
+const password = document.getElementById("password")
+const errorMessage = document.getElementById("error-msg")
+const navBar = document.getElementById('greeting')
+// const noThanksBtn = document.getElementById("no-thanks-btn")
+
+/// LOGIN Functions
+const login = (event) => {
+  event.preventDefault();
+  event.stopImmediatePropagation();
+
+  validateUser(username.value, password.value)
+}
+
+const validateUser = (loginName, password) => {
+  const usernameArray = loginName.split('traveler')
+  userID = Number(usernameArray[1])
+
+  if (!traveler.findUser(Number(usernameArray[1]))){
+    displayLoginError()
+    return
+  } else {
+    validatePassword(password, userID)
+  }
+}
+
+const validatePassword = (password, id) => {
+  if (password === "travel") {
+    validCred(id)
+  } else {
+    displayLoginError()
+  }
+}
+
+const displayLoginError = () => {
+  errorMessage.innerHTML = "<p>Opps, invalid username or password. <b>Please try again!</b> </p>"
+}
+
+const validCred = (id) => {
+  currentTraveler = traveler.findUser(id)
+  userTrips = trips.findTrips(id)
+  userDestinations = destinations.findByTrips(userTrips)
+  // trips.findTrips(currentTraveler.id)
 
 
+
+  loginContainer.classList.add("hidden");
+  navBar.classList.remove("hidden");
+  mainPage.classList.remove("hidden")
+  renderPage()
+}
+
+
+//Render Page functions
+const renderPage = () => {
+  renderUser()
+  renderCards(userTrips)
+  renderDropdown()
+}
 const renderUser = () => {
   let greetingHTML = `Hello, ${currentTraveler.name}`
   greeting.innerHTML = greetingHTML;
@@ -67,24 +126,6 @@ export const renderCards = (userTripsArray) => {
   cardContainer.innerHTML = cardContainerHTML;
 }
 
-
-
-const totalSpent = () => { // doublec check this math!
-  /// NEED TO HAVE IT UPDATE WITH NEW CARD BOOKED.. maybe?
-
-  trips.findTrips(currentTraveler.id)
-  let yearTrips = trips.findTripsInYear()
-
-  if (!destinations.findTotalSpent(yearTrips)) {
-    totalCost.innerHTML = `You need to travel more! $0 spent in ${dayjs(trips.today).year()}`
-  } else {
-    totalCost.innerHTML = `Beautiful! You've spent $${destinations.findTotalSpent(yearTrips)} on trips in ${dayjs(trips.today).year()}`
-
-  }
-  event.reset() // says it doesn't work but it does allow it tor reset... need to explore thsi bug
-}
-
-
 const renderDropdown = () => {
 
   let dropdownHTML = "";
@@ -97,24 +138,44 @@ const renderDropdown = () => {
   dropdown.innerHTML = dropdownHTML;
 }
 
-export const renderCardBack = (trip) => {
+export const renderCardBack = (trip) => { // invoked in scripts
+  console.log(trips.userTrips)
+  console.log('desintatons!?', destinations)
   console.log(trip)
   console.log(destinations.findTotalSpent([trip]))
-
   let cardBackHTML = `<img class="image" src="${destinations.findById(trip.destinationID).image}" alt="${destinations.findById(trip.destinationID).alt}">
-  <h2>${destinations.findById(trip.destinationID).destination}</h2>
-  <h2>costs: $55005.00</h2>
+  <h2>A trip to ${destinations.findById(trip.destinationID).destination}</h2>
+  <h2>will cost $${destinations.findTotalSpent([trip])}</h2>
   <div class="buttons">
-    <button type="button" class="button" id = "book-btn" name="book-it">Book it!</button>
-    <button type="button" class="button" name="no-thanks">No thanks</button>
+    <button type="button" class="button book-it" id = "book-btn" name="book-it">Book it!</button>
+    <button type="button" class="button no-thanks" name="no-thanks">No thanks</button>
   </div>`
 
   backPage.innerHTML = cardBackHTML;
 
   formCard.classList.add("hidden")
   backPage.classList.remove("hidden")
-  console.log('bookbtn inDOM', bookBtn)
 }
+
+// EventListner Function
+const totalSpent = () => { // doublec check this math!
+  /// NEED TO HAVE IT UPDATE WITH NEW CARD BOOKED.. maybe?
+
+  // trips.findTrips(currentTraveler.id)
+  let yearTrips = trips.findTripsInYear()
+
+  if (!destinations.findTotalSpent(yearTrips)) {
+    totalCost.innerHTML = `You need to travel more! $0 spent in ${dayjs(trips.today).year()}`
+  } else {
+    totalCost.innerHTML = `Beautiful! You've spent $${destinations.findTotalSpent(yearTrips)} on trips in ${dayjs(trips.today).year()}`
+  }
+  // event.reset() // says it doesn't work but it does allow it tor reset... need to explore thsi bug
+}
+
+
+
+
+//Show/Hide functions
 
 const showForm = (event) => {
   formContainer.classList.remove("hidden")
@@ -128,6 +189,6 @@ export const showCards = () => {
   mainPage.classList.remove("hidden")
 }
 
-
+loginBtn.addEventListener('click', () => login(event))
 bookAnotherTripBtn.addEventListener('click', showForm)
 totalCost.addEventListener('click', totalSpent)
