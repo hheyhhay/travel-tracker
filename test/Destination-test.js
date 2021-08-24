@@ -3,7 +3,7 @@ const expect = chai.expect;
 const Destination = require('../src/Destination')
 const Trip = require('../src/Trip')
 
-describe.only('Destination', () => {
+describe('Destination', () => {
   let destinations;
   let destination;
   let trips;

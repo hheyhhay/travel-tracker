@@ -5,7 +5,7 @@ var dayjs = require('dayjs');
 
 
 
-describe.only('Trip', () => {
+describe('Trip', () => {
   let trips;
   let trip;
 

@@ -16,6 +16,7 @@ let userID;
 export let userTrips;
 export let userDestinations;
 
+// Query Selectors
 export const submitTrip = document.getElementById("book-trip")
 export const calenderDate = document.getElementById("date")
 export const tripDuration = document.getElementById("duration")
