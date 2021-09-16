@@ -18,8 +18,8 @@ import {
   renderCardBack,
   showCards,
   currentTraveler,
-  userTrips, // not being used.. but I think that might be the problem
-  userDestinations, // sames sat trips
+  userTrips, 
+  userDestinations,
 } from './domUpdates';
 
 import {
@@ -40,7 +40,7 @@ export let newTrip;
 const invokeFetch = () => {
   allData
     .then(response => parseValues(response))
-    .catch(err => showFetchErrorMessage()) // ADD DOM ERROR!
+    .catch(err => showFetchErrorMessage())
 }
 
 const parseValues = (data) => {
@@ -111,6 +111,6 @@ const validatePost = (obj) => {
 }
 
 // Event Listeners
-submitTrip.addEventListener('submit', () => bookTrip(event)) // IF LEAVE COMMENT & JUSTIFY IT
+submitTrip.addEventListener('submit', () => bookTrip(event))
 backPage.addEventListener('click', () => publishTrip(event))
 window.addEventListener('load', invokeFetch)
