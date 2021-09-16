@@ -1,7 +1,7 @@
 
 
-# Title
-Mod 2: Travel Tracker
+# Travel Tracker
+_A solo final project for Module 2 at [Turing School of Software and Design](turing.edu)_
 
 
 ## Table of Contents
@@ -30,26 +30,34 @@ Travel Tracker allows the user to log into their account and view the trips they
 - Mocha/Chai Testing
 
 ## Code Architecture
-  dist directory
-    bundle.js
-    index.html
-  src directory
-      Trips.js - Trips Class
-      Traveler.js - Travel Class
-      Destination.js - Destination Class
-      apiCalls.js - holds the fetches and posts
-      domUpdates.js - file just for DOM manipulation
-      scripts.js: Application logic, API fetch and Posts
-     
-   css directory
-        base.scss - styling of the page
-        _variables.scss - varibles to simplify the styling
-        
-   test directory - tests for class files
-      Destinations-test.js
-      Travelers-test.js
-      Trip-test.js
-
+- __travel\-tracker__
+   - [README.md](README.md)
+   - __dist__
+     - [bundle.js](dist/bundle.js)
+     - [index.html](dist/index.html)
+   - [gh\-pages\-procedure.md](gh-pages-procedure.md)
+   - [node\_modules](node_modules)
+   - [package\-lock.json](package-lock.json)
+   - [package.json](package.json)
+   - [pull\_request\_template.md](pull_request_template.md)
+   - __src__
+     - [Destination.js](src/Destination.js)
+     - [Traveler.js](src/Traveler.js)
+     - [Trip.js](src/Trip.js)
+     - [apiCalls.js](src/apiCalls.js)
+     - __css__
+       - [\_variables.scss](src/css/_variables.scss)
+       - [base.scss](src/css/base.scss)
+     - [domUpdates.js](src/domUpdates.js)
+     - __images__
+       - [turing\-logo.png](src/images/turing-logo.png)
+     - [scripts.js](src/scripts.js)
+   - __test__
+     - [Destination\-test.js](test/Destination-test.js)
+     - [Traveler\-test.js](test/Traveler-test.js)
+     - [Trip\-test.js](test/Trip-test.js)
+   - [webpack.config.js](webpack.config.js)
+<!-- Tree created using md-file-tree -->
 
 ## Illustrations
 
@@ -59,12 +67,12 @@ The site in action!
 ## Install + Setup
 
   - clone down [this repo](https://github.com/hheyhhay/travel-tracker) 
-  - run npm install
-  - run npm start
+  - run ``npm install``
+  - run ``npm start``
   
   - clone down [the local storage](https://github.com/turingschool-examples/travel-tracker-api) in a outside directory
-  - run npm install
-  - run npm start
+  - run ``npm install``
+  - run ``npm start``
 
 At Page Log-in use:
   username: travler50
