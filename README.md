@@ -12,7 +12,7 @@ Mod 2: Travel Tracker
   - [Install + Setup](#set-up)
   - [Contributors](#contributors)
   - [Wins](#wins)
-  - [Challenges + Improvements](#challenges-+-Improvements)
+  - [Challenges + Improvements](#challenges+Improvements)
   - [Project Specs](#project-specs)
 
 ## Abstract
@@ -20,15 +20,14 @@ Mod 2: Travel Tracker
 Travel Tracker allows the user to log into their account and view the trips they have upcoming, past and are currently on. They are able to book a new trip to one of the 50 destination options and the date and amount of travelers of their choosing. 
 
 ## Technologies
-  - Javascript
-  - HTML
-  - SCSS
-  - Dayjs
-  - eslint
-	- WebPack
-	- Web API 
-	- Mocha/Chai
-
+- JavaScript
+- HTML
+- CSS
+- DayJs
+- eslint
+- WebPack
+- RESTful APIs
+- Mocha/Chai Testing
 
 ## Code Architecture
   dist directory
