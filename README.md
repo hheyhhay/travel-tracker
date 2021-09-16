@@ -8,7 +8,6 @@ _A solo final project for Module 2 at [Turing School of Software and Design](tur
   - [Abstract](#abstract)
   - [Technologies](#technologies)
   - [Code Architecture](#code-architecture)
-  - [Illustrations](#illustrations)
   - [Install + Setup](#set-up)
   - [Contributors](#contributors)
   - [Wins](#wins)
@@ -17,7 +16,12 @@ _A solo final project for Module 2 at [Turing School of Software and Design](tur
 
 ## Abstract
 
-Travel Tracker allows the user to log into their account and view the trips they have upcoming, past and are currently on. They are able to book a new trip to one of the 50 destination options and the date and amount of travelers of their choosing. 
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/78764587/128980371-b5fe61b9-b357-4866-aedc-4f319ea9dcc1.gif" width="700" align="center">
+</div>
+
+_Travel Tracker allows the user to log into their account and view the trips they have upcoming, past and are currently on. They are able to book a new trip to one of the 50 destination options and the date and amount of travelers of their choosing._
 
 ## Technologies
 - JavaScript
@@ -61,8 +65,8 @@ Travel Tracker allows the user to log into their account and view the trips they
 
 ## Illustrations
 
-![travel-tracker](https://user-images.githubusercontent.com/78764587/128980371-b5fe61b9-b357-4866-aedc-4f319ea9dcc1.gif)
-The site in action!
+
+
 
 ## Install + Setup
 
